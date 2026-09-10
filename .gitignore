@@ -1,0 +1,19 @@
+# OS / 编辑器临时文件
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+
+# 验证截图 / 调试产物（不需要进仓库）
+_preview*.png
+_*.html
+
+# IDE
+.vscode/
+.idea/
+
+# Node / Python 临时
+node_modules/
+__pycache__/
+*.log

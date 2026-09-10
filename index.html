@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>神驰布艺工作室 · 中式喜帕 · 龙凤刺绣 — SHENCHI</title>
+  <meta name="description" content="神驰布艺工作室 · 主营中式喜帕、红包袋、龙凤刺绣杯垫、婚庆布艺礼盒。淘宝 6.7 万粉丝老店。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Ma+Shan+Zheng&family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ======== SVG 印章 / 装饰符号库 ======== -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <defs>
+    <!-- 朱红印章「神驰」 -->
+    <symbol id="seal-shenchi" viewBox="0 0 80 80">
+      <rect x="2" y="2" width="76" height="76" fill="currentColor" rx="3"/>
+      <g fill="#F4ECDD" font-family="Noto Serif SC, serif" font-weight="700" text-anchor="middle">
+        <text x="40" y="38" font-size="22">神</text>
+        <text x="40" y="64" font-size="22">驰</text>
+      </g>
+    </symbol>
+    <!-- 喜字双喜 -->
+    <symbol id="double-happiness" viewBox="0 0 64 64">
+      <g fill="currentColor">
+        <path d="M16 8 v6 h-6 v6 h6 v6 h-6 v6 h6 v6 h-6 v6 h6 v6 h6 v-6 h6 v-6 h6 v-6 h6 v-6 h-6 v-6 h6 v-6 h-6 v-6 h6 v-6 h-6 v-6 h-6 v6 h-6 v-6z"/>
+      </g>
+    </symbol>
+    <!-- 卷云纹 -->
+    <symbol id="cloud" viewBox="0 0 60 30">
+      <path d="M2 22 q4 -10 12 -8 q4 -10 14 -6 q6 -8 14 -2 q6 -2 14 4" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+    </symbol>
+    <!-- 梅花 -->
+    <symbol id="plum" viewBox="0 0 40 40">
+      <g fill="currentColor">
+        <circle cx="20" cy="20" r="3"/>
+        <ellipse cx="20" cy="11" rx="3" ry="5"/>
+        <ellipse cx="20" cy="29" rx="3" ry="5"/>
+        <ellipse cx="11" cy="20" rx="5" ry="3"/>
+        <ellipse cx="29" cy="20" rx="5" ry="3"/>
+      </g>
+    </symbol>
+    <!-- 折扇 -->
+    <symbol id="fan" viewBox="0 0 80 60">
+      <g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+        <path d="M10 50 q30 -45 60 0"/>
+        <path d="M14 50 q30 -38 52 0"/>
+        <path d="M18 50 q30 -32 44 0"/>
+        <path d="M22 50 q30 -25 36 0"/>
+        <path d="M26 50 q30 -19 28 0"/>
+        <path d="M10 50 h60"/>
+        <circle cx="40" cy="50" r="2" fill="currentColor"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="brand">
+      <span class="brand-seal"><svg viewBox="0 0 80 80" width="34" height="34"><use href="#seal-shenchi"/></svg></span>
+      <span class="brand-word">
+        <span class="brand-cn">神驰布艺</span>
+        <span class="brand-en">SHENCHI · EMBROIDERY STUDIO</span>
+      </span>
+    </a>
+    <nav class="nav">
+      <a href="#scene">喜事场景</a>
+      <a href="#featured">龙凤精品</a>
+      <a href="#series">纹样系列</a>
+      <a href="#craft">工艺</a>
+      <a href="#custom">定制</a>
+      <a href="#journal">手记</a>
+    </nav>
+    <div class="header-actions">
+      <a href="#" class="cn">CN</a>
+      <span class="sep">/</span>
+      <a href="#" class="en">EN</a>
+      <span class="taobao-pill">淘宝店 →</span>
+    </div>
+  </div>
+</header>
+
+<!-- ======== Hero · KINTO 全屏大幅图版式（3 张图循环轮播） ======== -->
+<section class="hero">
+
+  <!-- 背景：3 张图叠放淡入淡出 -->
+  <div class="hero-bg">
+    <div class="hero-pic hp-1 active"></div>
+    <div class="hero-pic hp-2"></div>
+    <div class="hero-pic hp-3"></div>
+  </div>
+
+  <!-- 左下：场景小标签（KINTO 风格） · 每张图一套文案 -->
+  <div class="hero-meta-stack">
+    <div class="hero-meta active" data-slide="1">
+      <span class="meta-name">喜事 · 红案</span>
+      <span class="meta-en">CEREMONY · TEA &amp; HANDKERCHIEF</span>
+      <span class="meta-season">SS 2026 · NO.01</span>
+    </div>
+    <div class="hero-meta" data-slide="2">
+      <span class="meta-name">龙凤 · 吉礼</span>
+      <span class="meta-en">DRAGON &amp; PHOENIX · EMBROIDERY</span>
+      <span class="meta-season">SS 2026 · NO.02</span>
+    </div>
+    <div class="hero-meta" data-slide="3">
+      <span class="meta-name">百福 · 图卷</span>
+      <span class="meta-en">HUNDRED BLESSINGS · SCROLL</span>
+      <span class="meta-season">SS 2026 · NO.03</span>
+    </div>
+  </div>
+
+  <!-- 右下：滚动提示 -->
+  <div class="hero-side">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+
+  <!-- 底部：进度线（KINTO slide 指示 · 点击可切换） -->
+  <div class="hero-progress">
+    <span class="dot active" data-go="1"></span>
+    <span class="dot" data-go="2"></span>
+    <span class="dot" data-go="3"></span>
+    <span class="bar"><i></i></span>
+    <span class="count">01 / 03</span>
+  </div>
+</section>
+
+<!-- ======== 喜事场景 · 三栏分类（KINTO lifestylecategory 复刻） ======== -->
+<section id="scene" class="scene">
+  <div class="scene-grid">
+
+    <a href="#" class="scene-card">
+      <div class="scene-img scene-img-1"></div>
+      <div class="scene-text">
+        <h3>婚礼喜帕</h3>
+        <p>烫金、盘金绣双喜 · 揭盖头仪式</p>
+        <span class="more">View More →</span>
+      </div>
+    </a>
+
+    <a href="#" class="scene-card">
+      <div class="scene-img scene-img-2"></div>
+      <div class="scene-text">
+        <h3>红包 · 福袋</h3>
+        <p>福寿龙凤大红包 · 中式伴手礼</p>
+        <span class="more">View More →</span>
+      </div>
+    </a>
+
+    <a href="#" class="scene-card">
+      <div class="scene-img scene-img-3"></div>
+      <div class="scene-text">
+        <h3>节庆杯垫</h3>
+        <p>马年平安 · 龙凤呈祥 · 居家伴手</p>
+        <span class="more">View More →</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ======== 子品牌 / 礼盒大图 banner（KINTO futo5 复刻） ======== -->
+<section class="sub-brand">
+  <div class="sub-brand-inner">
+    <div class="sub-brand-bg">
+      <div class="sub-brand-deco">
+        <svg viewBox="0 0 64 64" class="deco-seal"><use href="#seal-shenchi"/></svg>
+      </div>
+    </div>
+    <div class="sub-brand-text">
+      <p class="eyebrow">— 子系列 · 新品 —</p>
+      <h2>神驰 · 喜事礼盒</h2>
+      <p>把喜帕、红包、对杯、桌旗四件套<br/>装进一只朱漆盒，赠予你最在意的人。</p>
+      <a href="#" class="btn-link">看礼盒 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 商品瀑布流（KINTO product 复刻） ======== -->
+<section id="featured" class="featured">
+  <div class="featured-head">
+    <p class="eyebrow">FEATURED · 龙凤精品</p>
+    <h2 class="featured-title">店里最受欢迎的器物</h2>
+    <a href="#" class="more-link">View More →</a>
+  </div>
+
+  <div class="product-grid">
+    <article class="product-card">
+      <div class="product-img p1">
+        <span class="ribbon ribbon-hot">热卖 TOP1</span>
+      </div>
+      <div class="product-info">
+        <p class="product-cat">烫金手绣喜帕</p>
+        <h3>平安喜乐 · 马年红手帕</h3>
+        <div class="product-price"><span>¥26.2</span><em>已售 900+</em></div>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="product-img p2">
+        <span class="ribbon ribbon-hot">热卖 TOP2</span>
+      </div>
+      <div class="product-info">
+        <p class="product-cat">中式红包</p>
+        <h3>龙凤呈祥 · 红包袋结婚专用</h3>
+        <div class="product-price"><span>¥4</span><em>已售 2万+</em></div>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="product-img p3">
+        <span class="ribbon">新品</span>
+      </div>
+      <div class="product-info">
+        <p class="product-cat">喜帕手帕</p>
+        <h3>纯棉纱布 · 清贫款喜帕</h3>
+        <div class="product-price"><span>¥13</span><em>已售 300+</em></div>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="product-img p4">
+        <span class="ribbon">礼盒</span>
+      </div>
+      <div class="product-info">
+        <p class="product-cat">婚庆礼盒</p>
+        <h3>喜帕 + 红包 · 新人四件套</h3>
+        <div class="product-price"><span>¥99</span><em>已售 500+</em></div>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="product-img p5">
+        <span class="ribbon">节庆</span>
+      </div>
+      <div class="product-info">
+        <p class="product-cat">杯垫</p>
+        <h3>中国风 · 红马刺绣杯垫</h3>
+        <div class="product-price"><span>¥18</span><em>已售 1200+</em></div>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="product-img p6">
+        <span class="ribbon ribbon-hot">人气</span>
+      </div>
+      <div class="product-info">
+        <p class="product-cat">盘金绣</p>
+        <h3>凤戏牡丹 · 纯手工喜帕</h3>
+        <div class="product-price"><span>¥58</span><em>已售 600+</em></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ======== 纹样系列 · 4 列场景（KINTO personalize 复刻） ======== -->
+<section id="series" class="series">
+  <div class="series-inner">
+    <div class="series-text">
+      <p class="eyebrow">— PATTERNS —</p>
+      <h2>传统纹样 · 当代转译</h2>
+      <p>龙凤、双喜、牡丹、祥云、葫芦、福字、回纹——<br/>我们拆解老图案，留下最干净的那一笔。</p>
+      <a href="#" class="btn-link">看全部纹样 →</a>
+    </div>
+    <div class="series-grid">
+      <div class="series-item"><div class="series-art s1"><svg viewBox="0 0 80 80" class="i-xl"><use href="#seal-shenchi"/></svg></div><h4>龙凤呈祥</h4><span>Dragon · Phoenix</span></div>
+      <div class="series-item"><div class="series-art s2"><svg viewBox="0 0 64 64" class="i-xl"><use href="#double-happiness"/></svg></div><h4>双喜临门</h4><span>Double Happiness</span></div>
+      <div class="series-item"><div class="series-art s3"><svg viewBox="0 0 40 40" class="i-xl"><use href="#plum"/></svg></div><h4>喜上眉梢</h4><span>Plum Blossom</span></div>
+      <div class="series-item"><div class="series-art s4"><svg viewBox="0 0 60 30" class="i-xl"><use href="#cloud"/></svg></div><h4>祥云瑞气</h4><span>Auspicious Cloud</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 工艺 · About 视频位（KINTO about 复刻） ======== -->
+<section id="craft" class="craft">
+  <div class="craft-inner">
+    <div class="craft-text">
+      <p class="eyebrow">CRAFT · 工艺</p>
+      <h2>十年只做一件事<br/>把传统纹样绣在布上</h2>
+      <p>工作室从泉州一间老屋起步，十年来只做中式喜帕与婚庆布艺。我们与潮州、苏绣、湘绣老匠人合作，从画稿、染色、盘金到锁边，每一道都由手工完成。</p>
+      <a href="#" class="btn-link">了解工艺 →</a>
+    </div>
+    <div class="craft-video">
+      <div class="craft-video-frame">
+        <div class="craft-video-cover"></div>
+        <button class="play-btn" aria-label="播放工艺视频">▶</button>
+        <span class="video-caption">工艺纪录片 · 一针一线 · 04:32</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 定制服务（KINTO personalize 复刻） ======== -->
+<section id="custom" class="custom">
+  <div class="custom-inner">
+    <div class="custom-poster">
+      <img src="img/product-maran.jpg" alt="马年平安喜乐喜帕" />
+      <div class="custom-poster-tag">客制 · 礼盒 / 喜帕 / 红包装饰</div>
+    </div>
+    <div class="custom-text">
+      <p class="eyebrow">— CUSTOMIZE —</p>
+      <h2>一对一定制服务</h2>
+      <p>可定制绣字、绣图、配色、礼盒组合。<br/>
+        婚礼伴手礼、节庆员工礼、企业定制均可承接。</p>
+      <ul class="custom-list">
+        <li><b>1.</b>选定款式与纹样</li>
+        <li><b>2.</b>提供定制内容（绣字 / 配色）</li>
+        <li><b>3.</b>7~15 天完成出件</li>
+      </ul>
+      <a href="#" class="btn-primary">咨询定制 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 杂志 / 手记（KINTO journal 复刻） ======== -->
+<section id="journal" class="journal">
+  <div class="featured-head">
+    <p class="eyebrow">JOURNAL · 手记</p>
+    <h2 class="featured-title">手艺与日常</h2>
+    <a href="#" class="more-link">More →</a>
+  </div>
+  <div class="journal-grid">
+    <article class="journal-card j1">
+      <div class="journal-img ji-1"></div>
+      <div class="journal-info">
+        <p class="journal-cat">工艺 · CRAFT</p>
+        <h3>盘金绣 — 比机绣贵 10 倍的秘密</h3>
+        <p class="journal-date">2026 · 06 · 12</p>
+      </div>
+    </article>
+    <article class="journal-card j2">
+      <div class="journal-img ji-2"></div>
+      <div class="journal-info">
+        <p class="journal-cat">场景 · SCENE</p>
+        <h3>揭盖头 — 中式婚礼里最安静的一刻</h3>
+        <p class="journal-date">2026 · 05 · 28</p>
+      </div>
+    </article>
+    <article class="journal-card j3">
+      <div class="journal-img ji-3"></div>
+      <div class="journal-info">
+        <p class="journal-cat">好物 · OBJECT</p>
+        <h3>马年春节 · 选一只红杯垫的讲究</h3>
+        <p class="journal-date">2026 · 02 · 06</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ======== Quote ======== -->
+<section class="quote">
+  <div class="container">
+    <blockquote>
+      <p>「喜事不必大，<br/>一帕一帕慢慢绣，<br/>日子才有重量。」</p>
+      <cite>— 神驰布艺工作室 · 主理人手记</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ======== Footer ======== -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="brand-seal"><svg viewBox="0 0 80 80" width="44" height="44"><use href="#seal-shenchi"/></svg></span>
+      <div>
+        <span class="brand-cn">神驰布艺</span>
+        <span class="brand-en">SHENCHI · EMBROIDERY STUDIO</span>
+      </div>
+    </div>
+    <p class="footer-slogan">十年匠作 · 中式喜帕 · 龙凤刺绣</p>
+  </div>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>产品</h4>
+      <a href="#scene">喜事场景</a>
+      <a href="#featured">龙凤精品</a>
+      <a href="#series">纹样系列</a>
+      <a href="#custom">定制服务</a>
+    </div>
+    <div class="footer-col">
+      <h4>关于</h4>
+      <a href="#craft">工艺故事</a>
+      <a href="#journal">手记</a>
+      <a href="#">售后服务</a>
+    </div>
+    <div class="footer-col">
+      <h4>联系</h4>
+      <p>淘宝：神驰布艺工作室</p>
+      <p>店铺粉丝 6.7 万</p>
+      <p>平均 3 天内发货</p>
+    </div>
+    <div class="footer-col">
+      <h4>订阅</h4>
+      <p class="tiny">上新 · 节庆礼盒 · 优惠<br/>第一时间通知你</p>
+      <form class="footer-form" onsubmit="return false;">
+        <input type="email" placeholder="你的邮箱" />
+        <button>订阅</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 神驰布艺工作室 · SHENCHI. All rights reserved.</p>
+    <p>Design with 朱砂印 · Aria</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

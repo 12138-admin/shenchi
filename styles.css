@@ -1,0 +1,970 @@
+/* =====================================================
+   神驰布艺工作室 SHENCHI · styles.css  v2
+   骨架 + 高级感 = KINTO(kinto.co.jp)：
+   — 无彩色底（近白）+ 大留白 + 无边框无阴影网格
+   — 图片为主、文字为辅、字号层级克制
+   中式只做「点缀」：印章一处、朱红一线、鎏金小字
+   ===================================================== */
+
+:root {
+  --red: #A8292A;          /* 朱红 · 仅印章/细线/价格 */
+  --red-deep: #7E1F20;
+  --gold: #C8A468;         /* 鎏金 · 仅英文小字与细线 */
+  --gold-deep: #A8843E;
+  --ink: #1A1310;          /* 墨黑 · 标题 */
+  --ink-soft: #55504A;     /* 正文 */
+  --ink-mute: #8C8680;     /* 辅助说明 */
+  --paper: #F7F5F0;        /* 近白宣纸 · 全站底色 */
+  --paper-warm: #EFECE4;   /* 图片底 */
+  --hairline: rgba(26, 19, 16, 0.09);
+
+  --serif: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  --callig: "Ma Shan Zheng", "Noto Serif SC", serif;
+  --en-serif: "Cormorant Garamond", "Noto Serif SC", serif;
+  --sans: "Inter", "Noto Serif SC", sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --w: 1280px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--serif);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.9;
+  font-size: 14.5px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+a { color: inherit; text-decoration: none; }
+
+.container { max-width: var(--w); margin: 0 auto; padding: 0 48px; }
+
+/* ---------- 通用小标签 / 标题 ---------- */
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 26px;
+  font-weight: 500;
+}
+
+h1, h2, h3, h4 { font-weight: 400; line-height: 1.5; }
+
+h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
+
+/* 按钮：细线框为主，朱红只在 hover 出现 */
+.btn-primary {
+  display: inline-block;
+  background: transparent;
+  color: var(--ink);
+  padding: 14px 46px;
+  font-size: 12.5px;
+  letter-spacing: 0.32em;
+  border: 1px solid rgba(26, 19, 16, 0.35);
+  transition: all 0.5s var(--ease);
+}
+.btn-primary:hover {
+  background: var(--red);
+  border-color: var(--red);
+  color: var(--paper);
+}
+
+.btn-link {
+  display: inline-block;
+  color: var(--ink);
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(26, 19, 16, 0.22);
+  transition: all 0.4s var(--ease);
+}
+.btn-link:hover { color: var(--red); border-color: var(--red); }
+
+/* =====================================================
+   Header · Hero 上方时透明白字
+   ===================================================== */
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(247, 245, 240, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: background 0.5s var(--ease), border-color 0.4s, color 0.4s;
+}
+.header.scrolled { border-color: var(--hairline); }
+
+/* Hero 之上：透明 + 白字 */
+.header.hero-mode {
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom-color: transparent;
+}
+.header.hero-mode .brand-cn { color: var(--paper); }
+.header.hero-mode .brand-en { color: rgba(244, 236, 221, 0.72); }
+.header.hero-mode .nav a { color: rgba(244, 236, 221, 0.78); }
+.header.hero-mode .nav a:hover { color: var(--paper); }
+.header.hero-mode .header-actions .cn { color: var(--paper); }
+.header.hero-mode .header-actions .en { color: rgba(244, 236, 221, 0.6); }
+.header.hero-mode .header-actions .sep { color: rgba(244, 236, 221, 0.3); }
+.header.hero-mode .taobao-pill {
+  border-color: rgba(244, 236, 221, 0.5);
+  color: var(--paper);
+}
+.header.hero-mode .taobao-pill:hover {
+  background: var(--paper);
+  border-color: var(--paper);
+  color: var(--ink);
+}
+
+.header-inner {
+  max-width: var(--w);
+  margin: 0 auto;
+  padding: 0 48px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand-seal { color: var(--red); flex-shrink: 0; display: flex; }
+.brand-word { display: flex; flex-direction: column; line-height: 1.4; }
+.brand-cn { font-size: 17px; font-weight: 500; letter-spacing: 0.34em; color: var(--ink); }
+.brand-en { font-family: var(--en-serif); font-size: 8.5px; letter-spacing: 0.34em; color: var(--ink-mute); }
+
+.nav { display: flex; gap: 42px; }
+.nav a {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--ink-soft);
+  position: relative;
+  padding: 6px 0;
+  transition: color 0.35s;
+}
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%; bottom: 0;
+  width: 0; height: 1px;
+  background: var(--red);
+  transition: width 0.4s var(--ease), left 0.4s var(--ease);
+}
+.nav a:hover { color: var(--ink); }
+.nav a:hover::after { width: 100%; left: 0; }
+
+.header-actions { display: flex; align-items: center; gap: 14px; font-size: 11px; }
+.header-actions .cn { color: var(--ink); }
+.header-actions .en { color: var(--ink-mute); }
+.header-actions .sep { color: var(--hairline); }
+.taobao-pill {
+  border: 1px solid rgba(26, 19, 16, 0.22);
+  color: var(--ink);
+  padding: 7px 20px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  border-radius: 999px;
+  transition: all 0.4s var(--ease);
+  cursor: pointer;
+}
+.taobao-pill:hover { background: var(--red); border-color: var(--red); color: var(--paper); }
+
+/* =====================================================
+   Hero · KINTO 全屏大幅图版式（3 张图循环轮播）
+   整张图占满首屏，文字退到极次要
+   ===================================================== */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 540px;
+  width: 100%;
+  color: var(--paper);
+  overflow: hidden;
+  background: #17110D; /* 加载前的兜底色，避免闪白 */
+}
+
+/* 三张图叠在同一位置，做 crossfade */
+.hero > .hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero > .hero-bg > .hero-pic {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.4s var(--ease);
+  will-change: opacity;
+}
+.hero > .hero-bg > .hero-pic.active { opacity: 1; }
+.hp-1 { background-image: url("img/hero-tea.jpg"); }
+.hp-2 { background-image: url("img/hero-dragon.jpg"); }
+.hp-3 { background-image: url("img/hero-baifu.jpg"); }
+
+/* 暗角 + 左下加深：让左下角文字更易读 */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 50%, transparent 45%, rgba(20, 12, 10, 0.55) 100%),
+    linear-gradient(180deg, rgba(20, 12, 10, 0.42) 0%, transparent 14%, transparent 55%, rgba(20, 12, 10, 0.35) 80%, rgba(20, 12, 10, 0.7) 100%),
+    linear-gradient(90deg, rgba(20, 12, 10, 0.5) 0%, transparent 25%, transparent 70%, rgba(20, 12, 10, 0.35) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+.hero > * { position: relative; z-index: 2; }
+
+/* 三套文案叠放，active 那套淡入 */
+.hero-meta-stack {
+  position: absolute;
+  left: 48px;
+  bottom: 16vh;
+  color: var(--paper);
+}
+.hero-meta {
+  position: absolute;
+  left: 0; bottom: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 22px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.hero-meta.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.hero-meta .meta-name {
+  font-family: var(--callig);
+  font-size: clamp(26px, 2.6vw, 36px);
+  letter-spacing: 0.18em;
+  font-weight: 400;
+  color: var(--paper);
+  text-shadow: 0 2px 16px rgba(20, 8, 8, 0.7), 0 0 2px rgba(20, 8, 8, 0.6);
+}
+.hero-meta .meta-en {
+  font-family: var(--en-serif);
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  color: rgba(244, 236, 221, 0.72);
+  text-transform: uppercase;
+}
+.hero-meta .meta-season {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  color: rgba(244, 236, 221, 0.5);
+  padding-left: 22px;
+  border-left: 1px solid rgba(244, 236, 221, 0.35);
+}
+
+/* 右下 SCROLL 提示 */
+.hero-side {
+  position: absolute;
+  right: 32px;
+  bottom: 16vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.hero-side span {
+  writing-mode: vertical-rl;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.5em;
+  color: rgba(244, 236, 221, 0.7);
+}
+.scroll-line {
+  width: 1px; height: 64px;
+  background: rgba(244, 236, 221, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+.scroll-line::after {
+  content: "";
+  position: absolute;
+  top: -100%; left: 0;
+  width: 100%; height: 100%;
+  background: var(--paper);
+  animation: scrollDrop 2.4s var(--ease) infinite;
+}
+
+/* 底部进度线（KINTO slide 指示） */
+.hero-progress {
+  position: absolute;
+  left: 48px; right: 48px;
+  bottom: 6vh;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: rgba(244, 236, 221, 0.75);
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+}
+.hero-progress .dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: rgba(244, 236, 221, 0.35);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.hero-progress .dot.active { background: var(--paper); }
+.hero-progress .dot:hover { background: var(--paper); }
+.hero-progress .bar {
+  flex: 1;
+  height: 1px;
+  background: rgba(244, 236, 221, 0.25);
+  position: relative;
+  margin: 0 8px;
+}
+.hero-progress .bar i {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 33%;
+  background: var(--paper);
+  transition: width 0.6s var(--ease);
+}
+.hero-progress .count {
+  font-family: var(--en-serif);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  color: rgba(244, 236, 221, 0.7);
+}
+
+@keyframes scrollDrop {
+  0% { top: -100%; }
+  60% { top: 100%; }
+  100% { top: 100%; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* =====================================================
+   喜事场景 · 三栏（无框 · 无阴影 · 素色面板）
+   ===================================================== */
+.scene { padding: 150px 48px 130px; background: var(--paper); }
+
+.scene-grid {
+  max-width: var(--w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 56px 48px;
+}
+
+.scene-card { display: block; }
+
+.scene-img {
+  aspect-ratio: 4 / 4.5;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper-warm);
+  transition: background 0.6s var(--ease);
+}
+.scene-img::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--gr, none);
+  opacity: 0.55;
+  transition: opacity 0.6s var(--ease);
+}
+.scene-img::after {
+  font-family: var(--callig);
+  font-size: 130px;
+  position: relative;
+  transition: transform 0.8s var(--ease), opacity 0.8s var(--ease);
+}
+.scene-card:hover .scene-img::before { opacity: 0.75; }
+.scene-card:hover .scene-img::after { transform: scale(1.04); }
+
+/* 三块场景：低饱和 · 同族色调（红陶 / 亚金 / 灰墨） */
+.scene-img-1 { --gr: linear-gradient(160deg, #D8C4BE, #C9ADA6); }
+.scene-img-1::after { content: "囍"; color: rgba(126, 31, 32, 0.62); }
+.scene-img-2 { --gr: linear-gradient(160deg, #E3D9C4, #D8CBB0); }
+.scene-img-2::after { content: "福"; color: rgba(126, 31, 32, 0.5); }
+.scene-img-3 { --gr: linear-gradient(160deg, #DDD8D0, #CFC9C0); }
+.scene-img-3::after { content: "吉"; color: rgba(26, 19, 16, 0.5); }
+
+.scene-text { padding: 26px 2px 0; }
+.scene-text h3 {
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+.scene-text p { font-size: 12.5px; font-weight: 300; color: var(--ink-mute); letter-spacing: 0.1em; }
+.scene-text .more {
+  display: inline-block;
+  margin-top: 18px;
+  font-family: var(--en-serif);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--red);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: all 0.5s var(--ease);
+}
+.scene-card:hover .more { opacity: 1; transform: translateX(0); }
+
+/* =====================================================
+   子品牌 banner · 墨色整幅（去掉网格纹理）
+   ===================================================== */
+.sub-brand { padding: 20px 48px 150px; }
+
+.sub-brand-inner {
+  max-width: var(--w);
+  margin: 0 auto;
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #211A14 0%, #17110D 55%, #221B15 100%);
+}
+
+.sub-brand-deco {
+  position: absolute;
+  right: 9%;
+  top: 50%;
+  transform: translateY(-50%) rotate(5deg);
+  color: var(--red);
+  opacity: 0.85;
+}
+.sub-brand-deco svg { width: 128px; height: 128px; }
+
+.sub-brand-text { position: relative; padding: 96px 80px; color: var(--paper); }
+.sub-brand-text .eyebrow { color: rgba(200, 164, 104, 0.85); }
+.sub-brand-text h2 {
+  font-size: clamp(30px, 3.2vw, 46px);
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  margin-bottom: 22px;
+  color: #F5F1E8;
+}
+.sub-brand-text p {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(245, 241, 232, 0.62);
+  letter-spacing: 0.12em;
+  margin-bottom: 36px;
+}
+.sub-brand-text .btn-link { color: var(--gold); border-color: rgba(200, 164, 104, 0.4); }
+.sub-brand-text .btn-link:hover { color: #F5F1E8; border-color: #F5F1E8; }
+
+/* =====================================================
+   商品网格 · KINTO 式纯网格
+   ===================================================== */
+.featured { padding: 0 48px 150px; }
+
+.featured-head {
+  max-width: var(--w);
+  margin: 0 auto 64px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+}
+.featured-title {
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: 300;
+  letter-spacing: 0.18em;
+}
+.more-link {
+  font-family: var(--en-serif);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  color: var(--ink-mute);
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--hairline);
+  transition: all 0.4s;
+}
+.more-link:hover { color: var(--red); border-color: var(--red); }
+
+.product-grid {
+  max-width: var(--w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 72px 48px;
+}
+
+.product-card { position: relative; }
+
+.product-img {
+  aspect-ratio: 1 / 1.06;
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-warm);
+}
+
+/* p1/p2 用真实商品图 */
+.product-img.p1, .product-img.p2 { background-size: cover; background-position: center; }
+.product-img.p1 { background-image: url("img/product-maran.jpg"); }
+.product-img.p2 { background-image: url("img/product-dragonphoenix.jpg"); }
+
+/* p3~p6：素色面板 + 淡墨楷字（换图时删掉 --ph 即可） */
+.product-img::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--ph, linear-gradient(165deg, #EFECE4, #E6E1D6));
+}
+.product-img.p1::before, .product-img.p2::before { display: none; }
+
+.product-img.p3 { --ph: linear-gradient(165deg, #F0EDE6, #E7E2D7); }
+.product-img.p4 { --ph: linear-gradient(165deg, #EDE7DC, #E0D9C9); }
+.product-img.p5 { --ph: linear-gradient(165deg, #EFEBE3, #E4DED2); }
+.product-img.p6 { --ph: linear-gradient(165deg, #EAE6DE, #DDD8CC); }
+
+.product-img::after {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--callig);
+  font-size: 104px;
+  letter-spacing: 0.1em;
+  transition: opacity 0.6s var(--ease);
+}
+.product-img.p1::after, .product-img.p2::after { display: none; }
+.product-img.p3::after { content: "帕"; color: rgba(126, 31, 32, 0.32); }
+.product-img.p4::after { content: "礼"; color: rgba(126, 31, 32, 0.28); }
+.product-img.p5::after { content: "垫"; color: rgba(26, 19, 16, 0.26); }
+.product-img.p6::after { content: "绣"; color: rgba(126, 31, 32, 0.3); }
+.product-card:hover .product-img::after { opacity: 0.55; }
+
+/* 角标：隐藏（促销感破坏高级感） */
+.ribbon { display: none; }
+
+.product-info { padding: 24px 2px 0; }
+.product-cat {
+  font-family: var(--sans);
+  font-size: 9.5px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 9px;
+}
+.product-info h3 {
+  font-size: 15.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+  transition: color 0.35s;
+}
+.product-card:hover .product-info h3 { color: var(--red-deep); }
+.product-price { display: flex; align-items: baseline; gap: 14px; }
+.product-price span { font-size: 15px; color: var(--ink); letter-spacing: 0.04em; }
+.product-price em { font-style: normal; font-size: 11px; font-weight: 300; color: var(--ink-mute); letter-spacing: 0.08em; }
+
+/* =====================================================
+   纹样系列 · 左文右网格
+   ===================================================== */
+.series { background: var(--paper); padding: 40px 48px 150px; }
+
+.series-inner {
+  max-width: var(--w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 32% 1fr;
+  gap: 96px;
+  align-items: center;
+}
+.series-text h2 {
+  font-weight: 300;
+  letter-spacing: 0.16em;
+  margin-bottom: 24px;
+}
+.series-text > p { font-size: 13.5px; font-weight: 300; color: var(--ink-soft); margin-bottom: 40px; letter-spacing: 0.08em; }
+
+.series-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.series-item {
+  background: var(--paper-warm);
+  border: 1px solid transparent;
+  padding: 40px 26px 34px;
+  text-align: center;
+  transition: border-color 0.5s var(--ease);
+}
+.series-item:hover { border-color: rgba(200, 164, 104, 0.45); }
+.series-art { margin: 0 auto 20px; width: 58px; height: 58px; opacity: 0.9; }
+.series-art svg { width: 100%; height: 100%; }
+.s1 { color: var(--red); }
+.s2 { color: var(--red); opacity: 0.8; }
+.s3 { color: var(--gold-deep); }
+.s4 { color: var(--ink-soft); }
+.series-item h4 { font-size: 15px; font-weight: 500; letter-spacing: 0.24em; margin-bottom: 5px; }
+.series-item span {
+  font-family: var(--en-serif);
+  font-size: 9.5px;
+  letter-spacing: 0.24em;
+  color: var(--ink-mute);
+}
+
+/* =====================================================
+   工艺 · 视频位
+   ===================================================== */
+.craft { padding: 0 48px 150px; background: var(--paper); }
+
+.craft-inner {
+  max-width: var(--w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 38% 1fr;
+  gap: 110px;
+  align-items: center;
+}
+.craft-text h2 {
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  line-height: 1.7;
+  margin-bottom: 26px;
+}
+.craft-text > p { font-size: 13.5px; font-weight: 300; color: var(--ink-soft); letter-spacing: 0.07em; margin-bottom: 38px; }
+
+.craft-video-frame {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: #17110D;
+  overflow: hidden;
+}
+.craft-video-cover { position: absolute; inset: 0; background: linear-gradient(135deg, #211A14, #17110D 55%, #241D16); }
+.craft-video-cover::before {
+  content: "繡";
+  position: absolute;
+  right: 7%; bottom: -14%;
+  font-family: var(--callig);
+  font-size: 240px;
+  color: rgba(200, 164, 104, 0.13);
+  line-height: 1;
+}
+.play-btn {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  border: 1px solid rgba(200, 164, 104, 0.6);
+  background: transparent;
+  color: var(--gold);
+  font-size: 17px;
+  cursor: pointer;
+  transition: all 0.5s var(--ease);
+}
+.play-btn:hover {
+  background: rgba(200, 164, 104, 0.12);
+  border-color: var(--gold);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+.video-caption {
+  position: absolute;
+  left: 24px; bottom: 20px;
+  color: rgba(245, 241, 232, 0.6);
+  font-size: 10.5px;
+  font-weight: 300;
+  letter-spacing: 0.26em;
+}
+
+/* =====================================================
+   定制服务
+   ===================================================== */
+.custom { padding: 0 48px 150px; background: var(--paper); }
+
+.custom-inner {
+  max-width: var(--w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 110px;
+  align-items: center;
+}
+.custom-poster { position: relative; }
+.custom-poster img { aspect-ratio: 4 / 4.6; object-fit: cover; }
+.custom-poster::before {
+  content: "";
+  position: absolute;
+  inset: 16px -16px -16px 16px;
+  border: 1px solid rgba(200, 164, 104, 0.45);
+  z-index: -1;
+}
+.custom-poster-tag {
+  position: absolute;
+  right: -12px; top: 24px;
+  writing-mode: vertical-rl;
+  background: rgba(26, 19, 16, 0.92);
+  color: var(--gold);
+  font-size: 10.5px;
+  font-weight: 300;
+  letter-spacing: 0.32em;
+  padding: 18px 10px;
+}
+
+.custom-text h2 { font-weight: 300; letter-spacing: 0.16em; margin-bottom: 22px; }
+.custom-text > p { font-size: 13.5px; font-weight: 300; color: var(--ink-soft); letter-spacing: 0.07em; margin-bottom: 34px; }
+
+.custom-list { list-style: none; margin-bottom: 44px; }
+.custom-list li {
+  padding: 17px 0 17px 4px;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 13.5px;
+  letter-spacing: 0.12em;
+  display: flex;
+  gap: 22px;
+  align-items: baseline;
+  transition: padding-left 0.4s var(--ease);
+}
+.custom-list li:hover { padding-left: 14px; }
+.custom-list b {
+  font-family: var(--en-serif);
+  color: var(--ink-mute);
+  font-weight: 400;
+  font-size: 13px;
+}
+
+/* =====================================================
+   手记
+   ===================================================== */
+.journal { background: var(--paper); padding: 40px 48px 150px; }
+
+.journal-grid {
+  max-width: var(--w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 56px 48px;
+}
+.journal-card { cursor: pointer; }
+.journal-img {
+  aspect-ratio: 4 / 3;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.journal-img::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--jg, var(--paper-warm));
+  opacity: 0.6;
+}
+.journal-img::after {
+  position: relative;
+  font-family: var(--callig);
+  font-size: 92px;
+  transition: opacity 0.5s var(--ease);
+}
+.ji-1 { --jg: linear-gradient(150deg, #DCCBC5, #D1BCB4); }
+.ji-1::after { content: "金"; color: rgba(126, 31, 32, 0.55); }
+.ji-2 { --jg: linear-gradient(150deg, #E4DCC8, #D9CFB6); }
+.ji-2::after { content: "礼"; color: rgba(126, 31, 32, 0.45); }
+.ji-3 { --jg: linear-gradient(150deg, #DFDBD3, #D3CDC3); }
+.ji-3::after { content: "席"; color: rgba(26, 19, 16, 0.45); }
+
+.journal-info { padding: 24px 2px 0; }
+.journal-cat {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--ink-mute);
+  margin-bottom: 9px;
+}
+.journal-info h3 { font-size: 15.5px; font-weight: 500; letter-spacing: 0.07em; margin-bottom: 9px; transition: color 0.35s; }
+.journal-card:hover h3 { color: var(--red-deep); }
+.journal-date { font-family: var(--en-serif); font-size: 10.5px; color: var(--ink-mute); letter-spacing: 0.14em; }
+
+/* =====================================================
+   Quote · 改为近白底（原满幅红改为留白款）
+   ===================================================== */
+.quote {
+  background: var(--paper-warm);
+  padding: 150px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.quote::before {
+  content: "囍";
+  position: absolute;
+  left: -20px; top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--callig);
+  font-size: 360px;
+  color: rgba(126, 31, 32, 0.045);
+  line-height: 1;
+}
+.quote blockquote { color: var(--ink); position: relative; }
+.quote p {
+  font-size: clamp(22px, 2.4vw, 31px);
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  line-height: 2.1;
+}
+.quote cite {
+  display: block;
+  margin-top: 34px;
+  font-style: normal;
+  font-size: 11.5px;
+  letter-spacing: 0.3em;
+  color: var(--ink-mute);
+}
+
+/* =====================================================
+   Footer · 墨黑（弱化金线）
+   ===================================================== */
+.footer { background: var(--ink); color: rgba(245, 241, 232, 0.72); padding: 96px 48px 0; }
+
+.footer-top {
+  max-width: var(--w);
+  margin: 0 auto 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 44px;
+  border-bottom: 1px solid rgba(245, 241, 232, 0.1);
+}
+.footer-brand { display: flex; align-items: center; gap: 20px; }
+.footer-brand .brand-cn { color: #F5F1E8; font-size: 21px; font-weight: 400; }
+.footer-brand .brand-en { color: rgba(200, 164, 104, 0.75); }
+.footer-slogan { font-size: 12px; font-weight: 300; letter-spacing: 0.34em; color: rgba(200, 164, 104, 0.85); }
+
+.footer-grid {
+  max-width: var(--w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px;
+  padding: 20px 0 76px;
+}
+.footer-col h4 {
+  color: #F5F1E8;
+  font-size: 12.5px;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  margin-bottom: 24px;
+}
+.footer-col a, .footer-col p {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 300;
+  color: rgba(245, 241, 232, 0.5);
+  letter-spacing: 0.1em;
+  padding: 6px 0;
+  transition: color 0.3s;
+}
+.footer-col a:hover { color: var(--gold); }
+.footer-col .tiny { line-height: 2.1; }
+
+.footer-form { display: flex; margin-top: 16px; border: 1px solid rgba(245, 241, 232, 0.16); }
+.footer-form input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  color: #F5F1E8;
+  font-family: var(--serif);
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+}
+.footer-form input::placeholder { color: rgba(245, 241, 232, 0.3); }
+.footer-form button {
+  background: transparent;
+  color: var(--gold);
+  border: none;
+  border-left: 1px solid rgba(245, 241, 232, 0.16);
+  padding: 0 26px;
+  font-family: var(--serif);
+  font-size: 12.5px;
+  letter-spacing: 0.24em;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+.footer-form button:hover { background: var(--red); color: var(--paper); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(245, 241, 232, 0.08);
+  padding: 28px 0;
+}
+.footer-bottom p {
+  max-width: var(--w);
+  margin: 0 auto;
+  text-align: center;
+  font-size: 10.5px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  color: rgba(245, 241, 232, 0.32);
+}
+.footer-bottom p + p { margin-top: 4px; }
+
+/* =====================================================
+   滚动揭示（KINTO inview）
+   ===================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1s var(--ease), transform 1s var(--ease);
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal[data-d="1"] { transition-delay: 0.12s; }
+.reveal[data-d="2"] { transition-delay: 0.24s; }
+.reveal[data-d="3"] { transition-delay: 0.36s; }
+
+/* =====================================================
+   Responsive
+   ===================================================== */
+@media (max-width: 1080px) {
+  .nav { display: none; }
+  .hero-slide { grid-template-columns: 1fr; gap: 56px; padding: 70px 32px; }
+  .hero-slide-image { aspect-ratio: 4 / 4; }
+  .scene-grid, .product-grid, .journal-grid { grid-template-columns: repeat(2, 1fr); }
+  .series-inner, .craft-inner, .custom-inner { grid-template-columns: 1fr; gap: 64px; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-side { display: none; }
+}
+
+@media (max-width: 640px) {
+  .container, .header-inner, .hero-slide, .scene, .sub-brand, .featured,
+  .series, .craft, .custom, .journal, .quote, .footer { padding-left: 22px; padding-right: 22px; }
+  .scene-grid, .product-grid, .journal-grid, .series-grid, .footer-grid { grid-template-columns: 1fr; }
+  .hero-title { font-size: 40px; }
+  .header-inner { padding: 0 22px; }
+  .brand-en, .header-actions .sep, .header-actions .en { display: none; }
+  .sub-brand-deco svg { width: 88px; height: 88px; }
+  .quote::before { font-size: 210px; }
+  .custom-poster-tag { right: 0; }
+}
