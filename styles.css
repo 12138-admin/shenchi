@@ -461,7 +461,11 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
 .scene-img--photo-2::after { background-image: url("img/scene-redpacket.jpg"); }
 .scene-img--photo-3::after { background-image: url("img/scene-coaster.jpg"); }
 
-.scene-text { padding: 26px 2px 0; }
+.scene-text {
+  padding: 26px 2px 0;
+  transition: transform 0.5s var(--ease);
+}
+.scene-card:hover .scene-text { transform: translateX(6px); }
 .scene-text h3 {
   font-size: 19px;
   font-weight: 500;
