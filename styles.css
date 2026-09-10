@@ -413,10 +413,12 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
 .scene-img-3 { --gr: linear-gradient(160deg, #DDD8D0, #CFC9C0); }
 .scene-img-3::after { content: "吉"; color: rgba(26, 19, 16, 0.5); }
 
-/* 真实图变体：婚礼喜帕 —— 用图 1（红黑喜帕 + 龍鳳呈祥 烫金） */
+/* 真实图变体：三张都用图（喜帕 / 红包 / 杯垫） */
 .scene-img--photo {
-  background: url("img/scene-hankie.png") center/cover no-repeat;
   background-color: #2a1a14;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 .scene-img--photo::before {
   background: linear-gradient(180deg, rgba(20, 12, 10, 0) 50%, rgba(20, 12, 10, 0.32) 100%);
@@ -425,6 +427,11 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
 }
 .scene-img--photo::after { content: none; }
 .scene-card:hover .scene-img--photo { background-size: 108% auto; }
+
+/* 三张实图的具体背景 */
+.scene-img--photo-1 { background-image: url("img/scene-hankie.png"); }
+.scene-img--photo-2 { background-image: url("img/scene-redpacket.jpg"); }
+.scene-img--photo-3 { background-image: url("img/scene-coaster.jpg"); }
 
 .scene-text { padding: 26px 2px 0; }
 .scene-text h3 {
