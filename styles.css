@@ -384,7 +384,7 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
   will-change: transform;
 }
 .scene-card:hover {
-  transform: translateY(-6px) scale(1.035);
+  transform: scale(1.035);
   box-shadow: 0 18px 38px -22px rgba(20, 12, 10, 0.28);
   z-index: 2;
 }
