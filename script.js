@@ -49,19 +49,18 @@
     });
   });
 
-  /* ---------- 滚动揭示（KINTO inview 复刻） ---------- */
+  /* ---------- 滚动揭示（KINTO inview 复刻 · 双向触发） ----------
+     进入视口 → 加 .in 播放揭示；离开视口 → 移除 .in 复位，
+     这样每次向下滑动都会重新播放揭示效果 */
   var revealEls = document.querySelectorAll(".reveal, .kinto");
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (e) {
-          if (e.isIntersecting) {
-            e.target.classList.add("in");
-            io.unobserve(e.target);
-          }
+          e.target.classList.toggle("in", e.isIntersecting);
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -5% 0px" }
+      { threshold: 0.12, rootMargin: "0px 0px -4% 0px" }
     );
     revealEls.forEach(function (el) { io.observe(el); });
   } else {
