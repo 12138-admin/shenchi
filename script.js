@@ -23,9 +23,9 @@
     ".craft-video-frame",
     ".custom-poster img"
   ].forEach(function (sel) {
-    document.querySelectorAll(sel).forEach(function (el, i) {
+    document.querySelectorAll(sel).forEach(function (el) {
       el.classList.add("kinto");
-      el.setAttribute("data-d", String(i % 4));
+      el.setAttribute("data-d", "0");
     });
   });
 
@@ -43,9 +43,9 @@
     ".sub-brand-text",
     ".quote blockquote"
   ].forEach(function (sel) {
-    document.querySelectorAll(sel).forEach(function (el, i) {
+    document.querySelectorAll(sel).forEach(function (el) {
       el.classList.add("reveal");
-      el.setAttribute("data-d", String(i % 4));
+      el.setAttribute("data-d", "0");
     });
   });
 
