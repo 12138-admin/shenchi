@@ -1009,7 +1009,7 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
 .kinto,
 .reveal {
   opacity: 0;
-  transform: translateY(26px);
+  transform: translateY(12px);
   transition:
     opacity 1.8s var(--ease-slow),
     transform 1.8s var(--ease-slow);
