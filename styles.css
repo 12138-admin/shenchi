@@ -209,7 +209,16 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
   transition: opacity 1.4s var(--ease);
   will-change: opacity;
 }
-.hero > .hero-bg > .hero-pic.active { opacity: 1; }
+.hero > .hero-bg > .hero-pic.active {
+  opacity: 1;
+  animation: heroSlowZoom 3.2s var(--ease);
+  will-change: transform;
+}
+/* KINTO 首屏缓推镜：图从轻微放大慢慢落定 */
+@keyframes heroSlowZoom {
+  from { transform: scale(1.1); }
+  to   { transform: scale(1); }
+}
 .hp-1 { background-image: url("img/hero-tea.jpg"); }
 .hp-2 { background-image: url("img/hero-dragon.jpg"); }
 .hp-3 { background-image: url("img/hero-baifu.jpg"); }
@@ -994,16 +1003,60 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
 
 /* =====================================================
    滚动揭示（KINTO inview）
+   — .kinto  : 图片专用 · 遮罩展开 + 微缩放归位（高级感核心）
+   — .reveal : 文字 / 面板 · 轻淡入上移
    ===================================================== */
+.kinto {
+  opacity: 0;
+  transform: scale(0.96);
+  clip-path: inset(9% 7% 9% 7%);
+  transition:
+    clip-path 1.6s var(--ease),
+    transform 1.6s var(--ease),
+    opacity 0.8s var(--ease);
+  will-change: clip-path, transform, opacity;
+}
+.kinto.in {
+  opacity: 1;
+  transform: scale(1);
+  clip-path: inset(0 0 0 0);
+}
+.kinto[data-d="1"] { transition-delay: 0.14s; }
+.kinto[data-d="2"] { transition-delay: 0.28s; }
+.kinto[data-d="3"] { transition-delay: 0.42s; }
+
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 1s var(--ease), transform 1s var(--ease);
+  transform: translateY(34px) scale(0.985);
+  clip-path: inset(0 0 22% 0);
+  transition:
+    opacity 0.9s var(--ease),
+    transform 1.3s var(--ease),
+    clip-path 1.3s var(--ease);
+  will-change: transform, clip-path, opacity;
 }
-.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  clip-path: inset(0 0 0 0);
+}
 .reveal[data-d="1"] { transition-delay: 0.12s; }
 .reveal[data-d="2"] { transition-delay: 0.24s; }
 .reveal[data-d="3"] { transition-delay: 0.36s; }
+
+/* 定制海报外框超出元素边界，不能用 clip 遮罩，只做淡入 */
+.custom-poster.reveal { clip-path: none; }
+
+/* 无障碍：用户偏好减少动效时直接显示 */
+@media (prefers-reduced-motion: reduce) {
+  .kinto, .reveal {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+    transition: none;
+  }
+  .hero-pic.active { animation: none; }
+}
 
 /* =====================================================
    Responsive

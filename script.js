@@ -15,17 +15,33 @@
   window.addEventListener("scroll", onScrollHeader, { passive: true });
   onScrollHeader();
 
-  /* ---------- 给各区块卡片自动加 reveal 类 ---------- */
+  /* ---------- 图片容器：KINTO 遮罩揭示（clip + scale） ---------- */
   [
-    ".scene-card",
-    ".product-card",
+    ".scene-img",
+    ".product-img",
+    ".journal-img",
+    ".craft-video-frame",
+    ".custom-poster img"
+  ].forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (el, i) {
+      el.classList.add("kinto");
+      el.setAttribute("data-d", String(i % 4));
+    });
+  });
+
+  /* ---------- 文字 / 面板：轻淡入上移 ---------- */
+  [
+    ".featured-title",
+    ".scene-text",
+    ".product-info",
+    ".journal-info",
     ".series-item",
-    ".journal-card",
     ".series-text",
     ".craft-text",
     ".custom-text",
     ".custom-poster",
-    ".sub-brand-text"
+    ".sub-brand-text",
+    ".quote blockquote"
   ].forEach(function (sel) {
     document.querySelectorAll(sel).forEach(function (el, i) {
       el.classList.add("reveal");
@@ -34,7 +50,7 @@
   });
 
   /* ---------- 滚动揭示（KINTO inview 复刻） ---------- */
-  var revealEls = document.querySelectorAll(".reveal");
+  var revealEls = document.querySelectorAll(".reveal, .kinto");
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(
       function (entries) {
