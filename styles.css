@@ -23,6 +23,7 @@
   --en-serif: "Cormorant Garamond", "Noto Serif SC", serif;
   --sans: "Inter", "Noto Serif SC", sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-slow: cubic-bezier(0.16, 1, 0.3, 1);
   --w: 1280px;
 }
 
@@ -1011,9 +1012,9 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
   transform: scale(0.96);
   clip-path: inset(9% 7% 9% 7%);
   transition:
-    clip-path 1.6s var(--ease),
-    transform 1.6s var(--ease),
-    opacity 0.8s var(--ease);
+    clip-path 2s var(--ease-slow),
+    transform 2s var(--ease-slow),
+    opacity 0.9s var(--ease);
   will-change: clip-path, transform, opacity;
 }
 .kinto.in {
@@ -1030,9 +1031,9 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
   transform: translateY(34px) scale(0.985);
   clip-path: inset(0 0 22% 0);
   transition:
-    opacity 0.9s var(--ease),
-    transform 1.3s var(--ease),
-    clip-path 1.3s var(--ease);
+    opacity 1s var(--ease),
+    transform 1.7s var(--ease-slow),
+    clip-path 1.7s var(--ease-slow);
   will-change: transform, clip-path, opacity;
 }
 .reveal.in {
@@ -1043,6 +1044,13 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
 .reveal[data-d="1"] { transition-delay: 0.12s; }
 .reveal[data-d="2"] { transition-delay: 0.24s; }
 .reveal[data-d="3"] { transition-delay: 0.36s; }
+
+/* 瞬时复位：完全离开视口后立即回到隐藏态（不播反向动画），
+   保证每次重新滚入都从头播放完整的缓慢揭示 */
+.kinto.instant, .reveal.instant {
+  transition: none !important;
+  transition-delay: 0s !important;
+}
 
 /* 定制海报外框超出元素边界，不能用 clip 遮罩，只做淡入 */
 .custom-poster.reveal { clip-path: none; }

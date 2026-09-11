@@ -49,18 +49,29 @@
     });
   });
 
-  /* ---------- 滚动揭示（KINTO inview 复刻 · 双向触发） ----------
-     进入视口 → 加 .in 播放揭示；离开视口 → 移除 .in 复位，
-     这样每次向下滑动都会重新播放揭示效果 */
+  /* ---------- 滚动揭示（KINTO inview 复刻 · 可重复播放） ----------
+     进入视口 → 加 .in 播放缓慢揭示；
+     完全离开视口 → 加 .instant 瞬时复位到隐藏态（不播反向动画），
+     这样每次滚入都会从头播放完整的揭示效果 */
   var revealEls = document.querySelectorAll(".reveal, .kinto");
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (e) {
-          e.target.classList.toggle("in", e.isIntersecting);
+          var el = e.target;
+          if (e.isIntersecting && e.intersectionRatio >= 0.15) {
+            el.classList.remove("instant");
+            el.classList.add("in");
+          } else if (!e.isIntersecting && e.intersectionRatio === 0) {
+            // 已完全滚出视口：瞬时复位
+            el.classList.add("instant");
+            el.classList.remove("in");
+            void el.offsetWidth; /* 强制 reflow，让复位立即生效 */
+            el.classList.remove("instant");
+          }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -4% 0px" }
+      { threshold: [0, 0.15], rootMargin: "0px 0px -6% 0px" }
     );
     revealEls.forEach(function (el) { io.observe(el); });
   } else {
