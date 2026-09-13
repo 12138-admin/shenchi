@@ -164,7 +164,7 @@
   // 启动
   startAuto();
 
-  /* ---------- 商品横列 carousel（KINTO product 左右切换） ---------- */
+  /* ---------- 商品横列 carousel（KINTO product 左右切换 + 自动滚动） ---------- */
   var rail  = document.querySelector(".featured-rail");
   var track = document.querySelector(".featured-track");
   var btnPrev = document.querySelector(".fn-prev");
@@ -177,24 +177,66 @@
     return first.getBoundingClientRect().width + gap;
   }
 
+  function maxScroll() {
+    if (!rail) return 0;
+    return rail.scrollWidth - rail.clientWidth - 2;
+  }
+
   function updateNavState() {
     if (!rail || !btnPrev || !btnNext) return;
-    var maxScroll = rail.scrollWidth - rail.clientWidth - 2;
+    var max = maxScroll();
     btnPrev.disabled = rail.scrollLeft <= 2;
-    btnNext.disabled = rail.scrollLeft >= maxScroll;
+    btnNext.disabled = rail.scrollLeft >= max;
   }
+
+  /* --- 自动滚动 --- */
+  var fcTimer = null;
+  var fcPause = false;          // hover 时置 true
+  var FC_INTERVAL = 4000;       // 每 4 秒滚一张
+
+  function fcAutoNext() {
+    if (!rail) return;
+    var step = stepWidth();
+    var max = maxScroll();
+    // 已到末尾：无缝回到起点
+    if (rail.scrollLeft >= max - 2) {
+      rail.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      rail.scrollBy({ left: step, behavior: "smooth" });
+    }
+  }
+
+  function fcStart() {
+    fcStop();
+    if (fcPause || !rail) return;
+    fcTimer = setInterval(fcAutoNext, FC_INTERVAL);
+  }
+  function fcStop() {
+    if (fcTimer) { clearInterval(fcTimer); fcTimer = null; }
+  }
+
+  // 页面切到后台时停掉，省 CPU / 避免回到前台后跳一帧
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) fcStop();
+    else fcStart();
+  });
 
   if (rail && btnPrev && btnNext) {
     btnPrev.addEventListener("click", function () {
       rail.scrollBy({ left: -stepWidth(), behavior: "smooth" });
+      fcStart();  // 重置计时器
     });
     btnNext.addEventListener("click", function () {
       rail.scrollBy({ left:  stepWidth(), behavior: "smooth" });
+      fcStart();  // 重置计时器
     });
     rail.addEventListener("scroll", updateNavState, { passive: true });
     window.addEventListener("resize", updateNavState);
-    // 初始状态
-    setTimeout(updateNavState, 60);
+    // hover 时暂停
+    rail.addEventListener("mouseenter", function () { fcPause = true;  fcStop(); });
+    rail.addEventListener("mouseleave", function () { fcPause = false; fcStart(); });
+    // 初始状态 + 启动自动滚动
+    setTimeout(function () { updateNavState(); fcStart(); }, 60);
   }
 
   /* ---------- 订阅表单 ---------- */
