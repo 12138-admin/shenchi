@@ -579,7 +579,7 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
   flex-direction: column;
   gap: 22px;
 }
-.featured-side .eyebrow { margin: 0; }
+.featured-side .eyebrow { display: none; }
 .featured-title {
   font-size: clamp(28px, 2.4vw, 36px);
   font-weight: 300;
