@@ -678,7 +678,7 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
   background-size: cover;
   background-position: center;
 }
-.fc-img.p1 { background-image: url("img/product-maran.jpg"); }
+.fc-img.p1 { background-image: url("img/product-jinju.jpg"); }
 .fc-img.p2 { background-image: url("img/product-dragonphoenix.jpg"); }
 
 /* 占位图（仿照旧 .product-img::before/::after 的素色 + 楷字） */
