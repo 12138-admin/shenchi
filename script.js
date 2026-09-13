@@ -196,13 +196,15 @@
 
   function fcAutoNext() {
     if (!rail) return;
-    var step = stepWidth();
-    var max = maxScroll();
-    // 已到末尾：无缝回到起点
-    if (rail.scrollLeft >= max - 2) {
+    var step  = stepWidth();          // 单张卡宽度（含 gap）
+    var move  = step * 2;             // 一次滚两张
+    var max   = maxScroll();
+    var left  = rail.scrollLeft;
+    // 剩余空间不够两张 → 跳回起点
+    if (left + move >= max - 2) {
       rail.scrollTo({ left: 0, behavior: "smooth" });
     } else {
-      rail.scrollBy({ left: step, behavior: "smooth" });
+      rail.scrollBy({ left: move, behavior: "smooth" });
     }
   }
 
