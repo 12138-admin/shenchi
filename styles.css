@@ -715,9 +715,10 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
 /* hover 时图片极轻微缩放 + 墨字变淡 */
 .fc-card:hover .fc-img::after { opacity: 0.45; transform: scale(1.04); }
 
-/* KINTO 揭示动效（配合 script.js 的 .kinto class） */
-.fc-img.kinto { clip-path: inset(0 0 100% 0); transition: clip-path 1.4s var(--ease); }
-.fc-img.kinto.in { clip-path: inset(0); }
+/* KINTO 揭示动效（配合 script.js 的 .kinto class）—— fc-img 不在此列，
+   因为 fc-img 在水平 carousel (overflow-x:auto) 里 IntersectionObserver
+   经常漏触发，导致 clip-path 永远裁掉、用户看不到图片。
+   产品卡图片默认可见，hover 时的 scale + fc-info 的淡入已足够） */
 
 /* 角标（可选，默认隐藏） */
 .ribbon {

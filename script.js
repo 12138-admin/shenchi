@@ -15,10 +15,12 @@
   window.addEventListener("scroll", onScrollHeader, { passive: true });
   onScrollHeader();
 
-  /* ---------- 图片容器：KINTO 遮罩揭示（clip + scale） ---------- */
+  /* ---------- 图片容器：KINTO 遮罩揭示（clip + scale） ----------
+     注：fc-img 不在此列。fc-img 在 overflow-x:auto 水平 carousel 里
+     IntersectionObserver 会漏触发，导致图片永远不可见（clip-path 默认
+     裁掉）。fc-img 默认可见，hover scale + fc-info 淡入已足够。 */
   [
     ".scene-img",
-    ".fc-img",
     ".journal-img",
     ".craft-video-frame",
     ".custom-poster img"
