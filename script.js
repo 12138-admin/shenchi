@@ -191,8 +191,37 @@
 
   /* --- 自动滚动 --- */
   var fcTimer = null;
+  var fcAnimRaf = null;        // 自定义动画的 rAF id
   var fcPause = false;          // hover 时置 true
   var FC_INTERVAL = 3000;       // 每 3 秒滚两张
+  var FC_ANIM_MS = 600;         // 滑动动画时长（自定义 eInOut，跟 3 秒节奏精准配合）
+
+  /**
+   * 自定义平滑滚动动画（不用浏览器原生 smooth scroll）：
+   * - 浏览器原生 smooth scroll 时长不可控（500~800ms），会让总周期失控
+   * - rAF + easing 时长精确可控，600ms 滑动 + 3000ms 等待 = 节奏精准
+   */
+  function animatedScroll(target, duration) {
+    if (fcAnimRaf) cancelAnimationFrame(fcAnimRaf);
+    var from = rail.scrollLeft;
+    var delta = target - from;
+    if (Math.abs(delta) < 1) { updateNavState(); return; }
+    var start = 0;
+    function step(ts) {
+      if (!start) start = ts;
+      var t = Math.min((ts - start) / duration, 1);
+      // easeInOutCubic
+      var e = t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+      rail.scrollLeft = from + delta * e;
+      if (t < 1) {
+        fcAnimRaf = requestAnimationFrame(step);
+      } else {
+        fcAnimRaf = null;
+        updateNavState();
+      }
+    }
+    fcAnimRaf = requestAnimationFrame(step);
+  }
 
   function fcAutoNext() {
     if (!rail) return;
@@ -201,12 +230,10 @@
     var max   = maxScroll();
     var left  = rail.scrollLeft;
     // 剩余空间不够两张 → 跳回起点
-    // behavior: "instant" 跳过浏览器 smooth scroll 动画（~600ms），
-    // 让总节奏 ≈ FC_INTERVAL 准确可控，不会让用户感觉"远不止 4 秒"
     if (left + move >= max - 2) {
-      rail.scrollTo({ left: 0, behavior: "instant" });
+      animatedScroll(0, FC_ANIM_MS);          // 无缝回起点
     } else {
-      rail.scrollBy({ left: move, behavior: "instant" });
+      animatedScroll(left + move, FC_ANIM_MS);
     }
   }
 
@@ -217,6 +244,7 @@
   }
   function fcStop() {
     if (fcTimer) { clearInterval(fcTimer); fcTimer = null; }
+    if (fcAnimRaf) { cancelAnimationFrame(fcAnimRaf); fcAnimRaf = null; }
   }
 
   // 页面切到后台时停掉，省 CPU / 避免回到前台后跳一帧
@@ -227,11 +255,11 @@
 
   if (rail && btnPrev && btnNext) {
     btnPrev.addEventListener("click", function () {
-      rail.scrollBy({ left: -stepWidth(), behavior: "smooth" });
+      animatedScroll(rail.scrollLeft - stepWidth(), FC_ANIM_MS);
       fcStart();  // 重置计时器
     });
     btnNext.addEventListener("click", function () {
-      rail.scrollBy({ left:  stepWidth(), behavior: "smooth" });
+      animatedScroll(rail.scrollLeft + stepWidth(), FC_ANIM_MS);
       fcStart();  // 重置计时器
     });
     rail.addEventListener("scroll", updateNavState, { passive: true });
