@@ -646,7 +646,9 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
+  /* 注意：不设 scroll-behavior:smooth —— 否则 JS 即使传 instant 也会被
+     CSS 强制 smooth 动画（~600ms），导致自动滚动节奏不准。
+     自动滚动走 instant，按钮点击单独传 smooth 即可。 */
   /* 让第一张卡片从最左侧紧贴开始 */
   margin-left: -8px;
   padding-left: 8px;

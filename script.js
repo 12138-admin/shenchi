@@ -192,7 +192,7 @@
   /* --- 自动滚动 --- */
   var fcTimer = null;
   var fcPause = false;          // hover 时置 true
-  var FC_INTERVAL = 4000;       // 每 4 秒滚一张
+  var FC_INTERVAL = 3000;       // 每 3 秒滚两张
 
   function fcAutoNext() {
     if (!rail) return;
@@ -201,10 +201,12 @@
     var max   = maxScroll();
     var left  = rail.scrollLeft;
     // 剩余空间不够两张 → 跳回起点
+    // behavior: "instant" 跳过浏览器 smooth scroll 动画（~600ms），
+    // 让总节奏 ≈ FC_INTERVAL 准确可控，不会让用户感觉"远不止 4 秒"
     if (left + move >= max - 2) {
-      rail.scrollTo({ left: 0, behavior: "smooth" });
+      rail.scrollTo({ left: 0, behavior: "instant" });
     } else {
-      rail.scrollBy({ left: move, behavior: "smooth" });
+      rail.scrollBy({ left: move, behavior: "instant" });
     }
   }
 
