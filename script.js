@@ -18,7 +18,7 @@
   /* ---------- 图片容器：KINTO 遮罩揭示（clip + scale） ---------- */
   [
     ".scene-img",
-    ".product-img",
+    ".fc-img",
     ".journal-img",
     ".craft-video-frame",
     ".custom-poster img"
@@ -33,7 +33,7 @@
   [
     ".featured-title",
     ".scene-text",
-    ".product-info",
+    ".fc-info",
     ".journal-info",
     ".series-item",
     ".series-text",
@@ -161,6 +161,39 @@
 
   // 启动
   startAuto();
+
+  /* ---------- 商品横列 carousel（KINTO product 左右切换） ---------- */
+  var rail  = document.querySelector(".featured-rail");
+  var track = document.querySelector(".featured-track");
+  var btnPrev = document.querySelector(".fn-prev");
+  var btnNext = document.querySelector(".fn-next");
+
+  function stepWidth() {
+    var first = track && track.querySelector(".fc-card");
+    if (!first) return 360;
+    var gap = parseFloat(getComputedStyle(track).columnGap) || 32;
+    return first.getBoundingClientRect().width + gap;
+  }
+
+  function updateNavState() {
+    if (!rail || !btnPrev || !btnNext) return;
+    var maxScroll = rail.scrollWidth - rail.clientWidth - 2;
+    btnPrev.disabled = rail.scrollLeft <= 2;
+    btnNext.disabled = rail.scrollLeft >= maxScroll;
+  }
+
+  if (rail && btnPrev && btnNext) {
+    btnPrev.addEventListener("click", function () {
+      rail.scrollBy({ left: -stepWidth(), behavior: "smooth" });
+    });
+    btnNext.addEventListener("click", function () {
+      rail.scrollBy({ left:  stepWidth(), behavior: "smooth" });
+    });
+    rail.addEventListener("scroll", updateNavState, { passive: true });
+    window.addEventListener("resize", updateNavState);
+    // 初始状态
+    setTimeout(updateNavState, 60);
+  }
 
   /* ---------- 订阅表单 ---------- */
   var form = document.querySelector(".footer-form");

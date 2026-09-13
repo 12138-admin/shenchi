@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Ma+Shan+Zheng&family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=13" />
+  <link rel="stylesheet" href="styles.css?v=14" />
 </head>
 <body>
 
@@ -181,80 +181,86 @@
   </div>
 </section>
 
-<!-- ======== 商品瀑布流（KINTO product 复刻） ======== -->
+<!-- ======== 商品横列（KINTO product 复刻 · 左侧栏 + 右侧大图横滑） ======== -->
 <section id="featured" class="featured">
-  <div class="featured-head">
-    <p class="eyebrow">FEATURED · 龙凤精品</p>
-    <h2 class="featured-title">店里最受欢迎的器物</h2>
-    <a href="#" class="more-link">View More →</a>
-  </div>
+  <div class="featured-inner">
 
-  <div class="product-grid">
-    <article class="product-card">
-      <div class="product-img p1">
-        <span class="ribbon ribbon-hot">热卖 TOP1</span>
+    <!-- 左侧固定栏：标题 / 副标题 / 查看更多 / 左右切换 -->
+    <aside class="featured-side">
+      <p class="eyebrow">— FEATURED —</p>
+      <h2 class="featured-title">产品</h2>
+      <p class="featured-sub">店里最受欢迎的器物</p>
+      <a href="#" class="more-link">View More →</a>
+      <div class="featured-nav">
+        <button class="fn-prev" aria-label="上一张">‹</button>
+        <button class="fn-next" aria-label="下一张">›</button>
       </div>
-      <div class="product-info">
-        <p class="product-cat">烫金手绣喜帕</p>
-        <h3>平安喜乐 · 马年红手帕</h3>
-        <div class="product-price"><span>¥26.2</span><em>已售 900+</em></div>
-      </div>
-    </article>
+    </aside>
 
-    <article class="product-card">
-      <div class="product-img p2">
-        <span class="ribbon ribbon-hot">热卖 TOP2</span>
-      </div>
-      <div class="product-info">
-        <p class="product-cat">中式红包</p>
-        <h3>龙凤呈祥 · 红包袋结婚专用</h3>
-        <div class="product-price"><span>¥4</span><em>已售 2万+</em></div>
-      </div>
-    </article>
+    <!-- 右侧横向滚动大图 -->
+    <div class="featured-rail">
+      <div class="featured-track">
 
-    <article class="product-card">
-      <div class="product-img p3">
-        <span class="ribbon">新品</span>
-      </div>
-      <div class="product-info">
-        <p class="product-cat">喜帕手帕</p>
-        <h3>纯棉纱布 · 清贫款喜帕</h3>
-        <div class="product-price"><span>¥13</span><em>已售 300+</em></div>
-      </div>
-    </article>
+        <a href="#" class="fc-card">
+          <div class="fc-img p1">
+            <span class="ribbon ribbon-hot">热卖 TOP1</span>
+          </div>
+          <div class="fc-info">
+            <p class="fc-cat">烫金手绣喜帕</p>
+            <h3>平安喜乐 · 马年红手帕</h3>
+            <div class="fc-price"><span>¥26.2</span><em>已售 900+</em></div>
+          </div>
+        </a>
 
-    <article class="product-card">
-      <div class="product-img p4">
-        <span class="ribbon">礼盒</span>
-      </div>
-      <div class="product-info">
-        <p class="product-cat">婚庆礼盒</p>
-        <h3>喜帕 + 红包 · 新人四件套</h3>
-        <div class="product-price"><span>¥99</span><em>已售 500+</em></div>
-      </div>
-    </article>
+        <a href="#" class="fc-card">
+          <div class="fc-img p2">
+            <span class="ribbon ribbon-hot">热卖 TOP2</span>
+          </div>
+          <div class="fc-info">
+            <p class="fc-cat">中式红包</p>
+            <h3>龙凤呈祥 · 红包袋结婚专用</h3>
+            <div class="fc-price"><span>¥4</span><em>已售 2万+</em></div>
+          </div>
+        </a>
 
-    <article class="product-card">
-      <div class="product-img p5">
-        <span class="ribbon">节庆</span>
-      </div>
-      <div class="product-info">
-        <p class="product-cat">杯垫</p>
-        <h3>中国风 · 红马刺绣杯垫</h3>
-        <div class="product-price"><span>¥18</span><em>已售 1200+</em></div>
-      </div>
-    </article>
+        <a href="#" class="fc-card">
+          <div class="fc-img p3"><span class="ribbon">新品</span></div>
+          <div class="fc-info">
+            <p class="fc-cat">喜帕手帕</p>
+            <h3>纯棉纱布 · 清贫款喜帕</h3>
+            <div class="fc-price"><span>¥13</span><em>已售 300+</em></div>
+          </div>
+        </a>
 
-    <article class="product-card">
-      <div class="product-img p6">
-        <span class="ribbon ribbon-hot">人气</span>
+        <a href="#" class="fc-card">
+          <div class="fc-img p4"><span class="ribbon">礼盒</span></div>
+          <div class="fc-info">
+            <p class="fc-cat">婚庆礼盒</p>
+            <h3>喜帕 + 红包 · 新人四件套</h3>
+            <div class="fc-price"><span>¥99</span><em>已售 500+</em></div>
+          </div>
+        </a>
+
+        <a href="#" class="fc-card">
+          <div class="fc-img p5"><span class="ribbon">节庆</span></div>
+          <div class="fc-info">
+            <p class="fc-cat">杯垫</p>
+            <h3>中国风 · 红马刺绣杯垫</h3>
+            <div class="fc-price"><span>¥18</span><em>已售 1200+</em></div>
+          </div>
+        </a>
+
+        <a href="#" class="fc-card">
+          <div class="fc-img p6"><span class="ribbon ribbon-hot">人气</span></div>
+          <div class="fc-info">
+            <p class="fc-cat">盘金绣</p>
+            <h3>凤戏牡丹 · 纯手工喜帕</h3>
+            <div class="fc-price"><span>¥58</span><em>已售 600+</em></div>
+          </div>
+        </a>
+
       </div>
-      <div class="product-info">
-        <p class="product-cat">盘金绣</p>
-        <h3>凤戏牡丹 · 纯手工喜帕</h3>
-        <div class="product-price"><span>¥58</span><em>已售 600+</em></div>
-      </div>
-    </article>
+    </div>
 
   </div>
 </section>
@@ -410,6 +416,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=12"></script>
+<script src="script.js?v=13"></script>
 </body>
 </html>

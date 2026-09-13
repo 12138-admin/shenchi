@@ -554,22 +554,51 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
 /* =====================================================
    商品网格 · KINTO 式纯网格
    ===================================================== */
-.featured { padding: 0 48px 150px; }
+/* ===== 商品横列（KINTO product · 左侧栏 + 右侧大图横滑） ===== */
 
-.featured-head {
-  max-width: var(--w);
-  margin: 0 auto 64px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 30px;
+.featured {
+  padding: 0 48px 160px;
+  background: var(--paper);
 }
+
+.featured-inner {
+  max-width: var(--w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* ---------- 左侧固定栏 ---------- */
+.featured-side {
+  position: sticky;
+  top: 120px;
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.featured-side .eyebrow { margin: 0; }
 .featured-title {
-  font-size: clamp(24px, 2.6vw, 34px);
+  font-size: clamp(28px, 2.4vw, 36px);
   font-weight: 300;
   letter-spacing: 0.18em;
+  margin: 0;
+  line-height: 1.15;
+}
+.featured-sub {
+  font-family: var(--cn-serif);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  color: var(--ink-mute);
+  margin: 0;
+  max-width: 200px;
+  line-height: 1.9;
 }
 .more-link {
+  align-self: flex-start;
   font-family: var(--en-serif);
   font-size: 11px;
   letter-spacing: 0.32em;
@@ -580,83 +609,187 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
 }
 .more-link:hover { color: var(--red); border-color: var(--red); }
 
-.product-grid {
-  max-width: var(--w);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 72px 48px;
+.featured-nav {
+  margin-top: 18px;
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--hairline);
+  width: max-content;
+}
+.featured-nav button {
+  width: 46px;
+  height: 46px;
+  background: transparent;
+  border: none;
+  font-family: var(--en-serif);
+  font-size: 22px;
+  line-height: 1;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.featured-nav button + button { border-left: 1px solid var(--hairline); }
+.featured-nav button:hover:not(:disabled) {
+  background: var(--ink);
+  color: var(--paper);
+}
+.featured-nav button:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
 }
 
-.product-card { position: relative; }
+/* ---------- 右侧横滑轨道 ---------- */
+.featured-rail {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  /* 让第一张卡片从最左侧紧贴开始 */
+  margin-left: -8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  /* 隐藏滚动条 */
+  scrollbar-width: none;
+}
+.featured-rail::-webkit-scrollbar { display: none; }
 
-.product-img {
-  aspect-ratio: 1 / 1.06;
+.featured-track {
+  display: flex;
+  gap: 32px;
+}
+
+.fc-card {
+  flex: 0 0 360px;
+  scroll-snap-align: start;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 图片容器 —— KINTO 风格的纯净大图 */
+.fc-img {
   position: relative;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   background: var(--paper-warm);
+  background-size: cover;
+  background-position: center;
 }
+.fc-img.p1 { background-image: url("img/product-maran.jpg"); }
+.fc-img.p2 { background-image: url("img/product-dragonphoenix.jpg"); }
 
-/* p1/p2 用真实商品图 */
-.product-img.p1, .product-img.p2 { background-size: cover; background-position: center; }
-.product-img.p1 { background-image: url("img/product-maran.jpg"); }
-.product-img.p2 { background-image: url("img/product-dragonphoenix.jpg"); }
-
-/* p3~p6：素色面板 + 淡墨楷字（换图时删掉 --ph 即可） */
-.product-img::before {
+/* 占位图（仿照旧 .product-img::before/::after 的素色 + 楷字） */
+.fc-img::before {
   content: "";
   position: absolute;
   inset: 0;
   background: var(--ph, linear-gradient(165deg, #EFECE4, #E6E1D6));
 }
-.product-img.p1::before, .product-img.p2::before { display: none; }
+.fc-img.p1::before, .fc-img.p2::before { display: none; }
+.fc-img.p3 { --ph: linear-gradient(165deg, #F0EDE6, #E7E2D7); }
+.fc-img.p4 { --ph: linear-gradient(165deg, #EDE7DC, #E0D9C9); }
+.fc-img.p5 { --ph: linear-gradient(165deg, #EFEBE3, #E4DED2); }
+.fc-img.p6 { --ph: linear-gradient(165deg, #EAE6DE, #DDD8CC); }
 
-.product-img.p3 { --ph: linear-gradient(165deg, #F0EDE6, #E7E2D7); }
-.product-img.p4 { --ph: linear-gradient(165deg, #EDE7DC, #E0D9C9); }
-.product-img.p5 { --ph: linear-gradient(165deg, #EFEBE3, #E4DED2); }
-.product-img.p6 { --ph: linear-gradient(165deg, #EAE6DE, #DDD8CC); }
-
-.product-img::after {
+.fc-img::after {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--callig);
-  font-size: 104px;
+  font-size: 130px;
   letter-spacing: 0.1em;
-  transition: opacity 0.6s var(--ease);
+  transition: opacity 0.6s var(--ease), transform 0.9s var(--ease);
+  z-index: 0;
 }
-.product-img.p1::after, .product-img.p2::after { display: none; }
-.product-img.p3::after { content: "帕"; color: rgba(126, 31, 32, 0.32); }
-.product-img.p4::after { content: "礼"; color: rgba(126, 31, 32, 0.28); }
-.product-img.p5::after { content: "垫"; color: rgba(26, 19, 16, 0.26); }
-.product-img.p6::after { content: "绣"; color: rgba(126, 31, 32, 0.3); }
-.product-card:hover .product-img::after { opacity: 0.55; }
+.fc-img.p1::after, .fc-img.p2::after { display: none; }
+.fc-img.p3::after { content: "帕"; color: rgba(126, 31, 32, 0.32); }
+.fc-img.p4::after { content: "礼"; color: rgba(126, 31, 32, 0.28); }
+.fc-img.p5::after { content: "垫"; color: rgba(26, 19, 16, 0.26); }
+.fc-img.p6::after { content: "绣"; color: rgba(126, 31, 32, 0.3); }
 
-/* 角标：隐藏（促销感破坏高级感） */
-.ribbon { display: none; }
+/* hover 时图片极轻微缩放 + 墨字变淡 */
+.fc-card:hover .fc-img::after { opacity: 0.45; transform: scale(1.04); }
 
-.product-info { padding: 24px 2px 0; }
-.product-cat {
+/* KINTO 揭示动效（配合 script.js 的 .kinto class） */
+.fc-img.kinto { clip-path: inset(0 0 100% 0); transition: clip-path 1.4s var(--ease); }
+.fc-img.kinto.in { clip-path: inset(0); }
+
+/* 角标（可选，默认隐藏） */
+.ribbon {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  border: 1px solid var(--hairline);
+}
+.ribbon-hot { color: var(--red); border-color: rgba(126, 31, 32, 0.3); }
+
+/* ---------- 卡片下方极简信息 ---------- */
+.fc-info {
+  padding: 22px 2px 0;
+}
+.fc-cat {
   font-family: var(--sans);
   font-size: 9.5px;
   letter-spacing: 0.34em;
   text-transform: uppercase;
   color: var(--ink-mute);
-  margin-bottom: 9px;
+  margin: 0 0 9px;
 }
-.product-info h3 {
+.fc-info h3 {
   font-size: 15.5px;
   font-weight: 500;
   letter-spacing: 0.08em;
-  margin-bottom: 12px;
-  transition: color 0.35s;
+  margin: 0 0 12px;
+  transition: color 0.4s var(--ease);
 }
-.product-card:hover .product-info h3 { color: var(--red-deep); }
-.product-price { display: flex; align-items: baseline; gap: 14px; }
-.product-price span { font-size: 15px; color: var(--ink); letter-spacing: 0.04em; }
-.product-price em { font-style: normal; font-size: 11px; font-weight: 300; color: var(--ink-mute); letter-spacing: 0.08em; }
+.fc-card:hover .fc-info h3 { color: var(--red-deep); }
+.fc-price {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+.fc-price span {
+  font-size: 15px;
+  color: var(--ink);
+  letter-spacing: 0.04em;
+}
+.fc-price em {
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--ink-mute);
+  letter-spacing: 0.08em;
+}
+
+/* ---------- 窄屏响应式 ---------- */
+@media (max-width: 900px) {
+  .featured-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .featured-side {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px 28px;
+  }
+  .featured-title { font-size: 26px; }
+  .featured-sub { flex: 1 1 100%; max-width: none; }
+  .fc-card { flex: 0 0 78vw; }
+}
 
 /* =====================================================
    纹样系列 · 左文右网格
