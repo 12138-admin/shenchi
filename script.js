@@ -271,6 +271,21 @@
     setTimeout(function () { updateNavState(); fcStart(); }, 60);
   }
 
+  /* ---------- 定制缩略图多图轮播（同一定制品类多张图交叉淡入） ---------- */
+  var ciBoxes = document.querySelectorAll(".ci-img");
+  Array.prototype.forEach.call(ciBoxes, function (box) {
+    var imgs = box.querySelectorAll("img");
+    if (imgs.length < 2) return; // 单图不需要轮播
+    box.classList.add("is-fade");
+    var idx = 0;
+    imgs[0].classList.add("on");
+    setInterval(function () {
+      imgs[idx].classList.remove("on");
+      idx = (idx + 1) % imgs.length;
+      imgs[idx].classList.add("on");
+    }, 4000);
+  });
+
   /* ---------- 订阅表单 ---------- */
   var form = document.querySelector(".footer-form");
   if (form) {

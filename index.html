@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Ma+Shan+Zheng&family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=17" />
+  <link rel="stylesheet" href="styles.css?v=56" />
 </head>
 <body>
 
@@ -61,12 +61,9 @@
 <!-- Header -->
 <header class="header">
   <div class="header-inner">
-    <a href="#" class="brand">
-      <span class="brand-seal"><svg viewBox="0 0 80 80" width="34" height="34"><use href="#seal-shenchi"/></svg></span>
-      <span class="brand-word">
-        <span class="brand-cn">神驰布艺</span>
-        <span class="brand-en">SHENCHI · EMBROIDERY STUDIO</span>
-      </span>
+    <a href="#" class="brand brand-img">
+      <img class="brand-logo" src="img/logo.png" alt="神驰布艺工作室 SHENCHI STUDIO" />
+      <img class="brand-logo brand-logo-light" src="img/logo-light.png" alt="" aria-hidden="true" />
     </a>
     <nav class="nav">
       <a href="#scene">喜事场景</a>
@@ -80,7 +77,7 @@
       <a href="#" class="cn">CN</a>
       <span class="sep">/</span>
       <a href="#" class="en">EN</a>
-      <span class="taobao-pill">淘宝店 →</span>
+      <a href="https://shop67229745.taobao.com/" target="_blank" rel="noopener noreferrer" class="taobao-pill" title="前往神驰布艺淘宝店">淘宝店 →</a>
     </div>
   </div>
 </header>
@@ -183,80 +180,74 @@
 
 <!-- ======== 商品横列（KINTO product 复刻 · 左侧栏 + 右侧大图横滑） ======== -->
 <section id="featured" class="featured">
-  <div class="featured-inner">
+  <div class="featured-head">
+    <p class="eyebrow">COLLECTION · 龙凤精品</p>
+    <h2 class="featured-title">店里最受欢迎的器物</h2>
+  </div>
 
-    <!-- 左侧固定栏：标题 / 副标题 / 查看更多 / 左右切换 -->
-    <aside class="featured-side">
-      <h2 class="featured-title">产品</h2>
-      <p class="featured-sub">店里最受欢迎的器物</p>
-      <a href="#" class="more-link">View More →</a>
-      <div class="featured-nav">
-        <button class="fn-prev" aria-label="上一张">‹</button>
-        <button class="fn-next" aria-label="下一张">›</button>
+  <!-- 4×2 网格 · 图片占位（后续按 cc1~cc8 换真图，标题由用户提供） -->
+  <div class="collect-grid">
+    <a href="#" class="collect-card cc1">
+      <span class="cc-idx">01</span>
+      <div class="cc-cap">
+        <h3>龙凤呈祥 · 刺绣红包袋</h3>
+        <p>盘金绣龙凤一对 · 婚礼改口利是</p>
       </div>
-    </aside>
-
-    <!-- 右侧横向滚动大图 -->
-    <div class="featured-rail">
-      <div class="featured-track">
-
-        <a href="#" class="fc-card">
-          <div class="fc-img p1"></div>
-          <div class="fc-info">
-            <p class="fc-cat">平安喜乐，马到成功</p>
-            <h3>金驹送福 2026马年红包袋</h3>
-            <div class="fc-price"><span>¥39.8</span><em>已售 3000+</em></div>
-          </div>
-        </a>
-
-        <a href="#" class="fc-card">
-          <div class="fc-img p2"></div>
-          <div class="fc-info">
-            <p class="fc-cat">中式红包</p>
-            <h3>龙凤呈祥 · 红包袋结婚专用</h3>
-            <div class="fc-price"><span>¥4</span><em>已售 2万+</em></div>
-          </div>
-        </a>
-
-        <a href="#" class="fc-card">
-          <div class="fc-img p3"></div>
-          <div class="fc-info">
-            <p class="fc-cat">喜帕手帕</p>
-            <h3>纯棉纱布 · 清贫款喜帕</h3>
-            <div class="fc-price"><span>¥13</span><em>已售 300+</em></div>
-          </div>
-        </a>
-
-        <a href="#" class="fc-card">
-          <div class="fc-img p4"></div>
-          <div class="fc-info">
-            <p class="fc-cat">婚庆礼盒</p>
-            <h3>喜帕 + 红包 · 新人四件套</h3>
-            <div class="fc-price"><span>¥99</span><em>已售 500+</em></div>
-          </div>
-        </a>
-
-        <a href="#" class="fc-card">
-          <div class="fc-img p5"></div>
-          <div class="fc-info">
-            <p class="fc-cat">杯垫</p>
-            <h3>中国风 · 红马刺绣杯垫</h3>
-            <div class="fc-price"><span>¥18</span><em>已售 1200+</em></div>
-          </div>
-        </a>
-
-        <a href="#" class="fc-card">
-          <div class="fc-img p6"></div>
-          <div class="fc-info">
-            <p class="fc-cat">盘金绣</p>
-            <h3>凤戏牡丹 · 纯手工喜帕</h3>
-            <div class="fc-price"><span>¥58</span><em>已售 600+</em></div>
-          </div>
-        </a>
-
+    </a>
+    <a href="#" class="collect-card cc2">
+      <span class="cc-idx">02</span>
+      <div class="cc-cap">
+        <h3>梅兰竹菊 · 刺绣手帕</h3>
+        <p>纯棉吸汗方巾 · 男女随身 · 生日礼物</p>
       </div>
-    </div>
+    </a>
+    <a href="#" class="collect-card cc3">
+      <span class="cc-idx">03</span>
+      <div class="cc-cap">
+        <h3>囍事临门 · 喜字杯垫</h3>
+        <p>结婚敬茶托盘 · 婚房装饰 · 婚庆拍摄道具</p>
+      </div>
+    </a>
+    <a href="#" class="collect-card cc4">
+      <span class="cc-idx">04</span>
+      <div class="cc-cap">
+        <h3>敦煌藻井纹 · 刺绣手帕</h3>
+        <p>古风中国特色 · 送外国人礼物 · 吸汗手绢</p>
+      </div>
+    </a>
+    <a href="#" class="collect-card cc5">
+      <span class="cc-idx">05</span>
+      <div class="cc-cap">
+        <h3>平安喜乐 · 马年刺绣红包</h3>
+        <p>福气小马 · 马年定制利是封</p>
+      </div>
+    </a>
+    <a href="#" class="collect-card cc6">
+      <span class="cc-idx">06</span>
+      <div class="cc-cap">
+        <h3>大熊猫 · 刺绣手帕</h3>
+        <p>纯棉吸汗方巾 · 留学送外国人礼物</p>
+      </div>
+    </a>
+    <a href="#" class="collect-card cc7">
+      <span class="cc-idx">07</span>
+      <div class="cc-cap">
+        <h3>山水入席 · 刺绣茶席桌旗</h3>
+        <p>远山黛色 · 一席茶事成景</p>
+      </div>
+    </a>
+    <a href="#" class="collect-card cc8">
+      <span class="cc-idx">08</span>
+      <div class="cc-cap">
+        <h3>山鸟鸣春 · 刺绣茶帕</h3>
+        <p>草虫山鸟 · 工笔绣入方帕</p>
+      </div>
+    </a>
+  </div>
 
+  <div class="collect-foot">
+    <p>好的器物值得等待 —— 定制款可与客服沟通工期与细节。</p>
+    <a href="#" class="btn-dark">查看全部精品</a>
   </div>
 </section>
 
@@ -270,10 +261,10 @@
       <a href="#" class="btn-link">看全部纹样 →</a>
     </div>
     <div class="series-grid">
-      <div class="series-item"><div class="series-art s1"><svg viewBox="0 0 80 80" class="i-xl"><use href="#seal-shenchi"/></svg></div><h4>龙凤呈祥</h4><span>Dragon · Phoenix</span></div>
-      <div class="series-item"><div class="series-art s2"><svg viewBox="0 0 64 64" class="i-xl"><use href="#double-happiness"/></svg></div><h4>双喜临门</h4><span>Double Happiness</span></div>
-      <div class="series-item"><div class="series-art s3"><svg viewBox="0 0 40 40" class="i-xl"><use href="#plum"/></svg></div><h4>喜上眉梢</h4><span>Plum Blossom</span></div>
-      <div class="series-item"><div class="series-art s4"><svg viewBox="0 0 60 30" class="i-xl"><use href="#cloud"/></svg></div><h4>祥云瑞气</h4><span>Auspicious Cloud</span></div>
+      <div class="series-item"><div class="series-art s1"><img src="img/pattern-dragonphoenix.png" alt="龙凤呈祥纹样" /></div><h4>龙凤呈祥</h4><span>Dragon · Phoenix</span></div>
+      <div class="series-item"><div class="series-art s2"><img src="img/pattern-shuangxi.png?v=3" alt="双喜临门纹样" /></div><h4>双喜临门</h4><span>Double Happiness</span></div>
+      <div class="series-item"><div class="series-art s3"><img src="img/pattern-hehuan.png" alt="合欢同心纹样" /></div><h4>合欢同心</h4><span>Silk Tree</span></div>
+      <div class="series-item"><div class="series-art s4"><img src="img/pattern-orchid.png" alt="空谷幽兰纹样" /></div><h4>空谷幽兰</h4><span>Orchid</span></div>
     </div>
   </div>
 </section>
@@ -283,15 +274,15 @@
   <div class="craft-inner">
     <div class="craft-text">
       <p class="eyebrow">CRAFT · 工艺</p>
-      <h2>十年只做一件事<br/>把传统纹样绣在布上</h2>
-      <p>工作室从泉州一间老屋起步，十年来只做中式喜帕与婚庆布艺。我们与潮州、苏绣、湘绣老匠人合作，从画稿、染色、盘金到锁边，每一道都由手工完成。</p>
+      <h2>七年只做一件事<br/>把传统纹样绣在布上</h2>
+      <p>工作室 2019 年成立于潍坊昌邑，从加工、销售布艺品起步，专注中式喜帕与婚庆布艺。画稿、配色、盘金、锁边，一步一步慢慢做，小工作室，只求每件布艺都经得起细看。</p>
       <a href="#" class="btn-link">了解工艺 →</a>
     </div>
     <div class="craft-video">
       <div class="craft-video-frame">
         <div class="craft-video-cover"></div>
         <button class="play-btn" aria-label="播放工艺视频">▶</button>
-        <span class="video-caption">工艺纪录片 · 一针一线 · 04:32</span>
+        <span class="video-caption">工艺实拍 · 一针一线</span>
       </div>
     </div>
   </div>
@@ -301,20 +292,32 @@
 <section id="custom" class="custom">
   <div class="custom-inner">
     <div class="custom-poster">
-      <img src="img/product-maran.jpg" alt="马年平安喜乐喜帕" />
-      <div class="custom-poster-tag">客制 · 礼盒 / 喜帕 / 红包装饰</div>
+      <img src="img/custom-embroidery.jpg" alt="一对一客制刺绣 · 山水纹桌旗与松树杯垫" class="cf-1" />
+      <img src="img/custom-tea-mat.jpg" alt="山水纹茶席桌旗定制" class="cf-2" />
+      <img src="img/custom-coaster-cream.jpg" alt="米色底山水纹杯垫定制" class="cf-3" />
+      <img src="img/custom-bird-hankie.jpg" alt="山鸟与蚱蜢刺绣茶帕定制" class="cf-4" />
     </div>
     <div class="custom-text">
-      <p class="eyebrow">— CUSTOMIZE —</p>
-      <h2>一对一定制服务</h2>
-      <p>可定制绣字、绣图、配色、礼盒组合。<br/>
-        婚礼伴手礼、节庆员工礼、企业定制均可承接。</p>
+      <div class="custom-items">
+        <a href="#" class="ci-card">
+          <span class="ci-img"><img src="img/custom-xipa.png" alt="喜帕定制" class="ci-contain" /><img src="img/custom-xipa-2.png" alt="喜帕定制 · 马年款" class="ci-contain" /><img src="img/custom-xipa-3.png" alt="喜帕定制 · 龙纹款" class="ci-contain" /><img src="img/custom-xipa-4.png" alt="喜帕定制 · 兰花款" class="ci-contain" /></span>
+          <span class="ci-label">喜帕定制</span>
+        </a>
+        <a href="#" class="ci-card">
+          <span class="ci-img"><img src="img/custom-xi-coaster.png" alt="杯垫定制" class="ci-contain" /><img src="img/custom-coaster-horse.png" alt="杯垫定制 · 马年三色款" class="ci-contain" /><img src="img/custom-coaster-dragon.png" alt="杯垫定制 · 龙纹款" class="ci-contain" /><img src="img/custom-coaster-cat.png?v=3" alt="杯垫定制 · 猫咪节气款" class="ci-contain" /></span>
+          <span class="ci-label">杯垫定制</span>
+        </a>
+        <a href="#" class="ci-card">
+          <span class="ci-img"><img src="img/custom-hongbao-cut.png" alt="红包定制" class="ci-contain" /><img src="img/custom-hongbao-2.png" alt="红包定制 · 马年款" class="ci-contain" /><img src="img/custom-hongbao-3.png" alt="红包定制 · 龙腾平安款" class="ci-contain" /><img src="img/custom-hongbao-4.png" alt="红包定制 · 年年如意款" class="ci-contain" /></span>
+          <span class="ci-label">红包定制</span>
+        </a>
+      </div>
+      <a href="#" class="custom-try">咨询定制</a>
       <ul class="custom-list">
-        <li><b>1.</b>选定款式与纹样</li>
-        <li><b>2.</b>提供定制内容（绣字 / 配色）</li>
-        <li><b>3.</b>7~15 天完成出件</li>
+        <li>与客服商定细节，确认样式与价格</li>
+        <li>材料包 2~3 天发货，成品 5~7 天发货</li>
       </ul>
-      <a href="#" class="btn-primary">咨询定制 →</a>
+      <p class="custom-note">急用请提前与客服沟通；定制品按需制作，不适用「7 天无理由退换」。</p>
     </div>
   </div>
 </section>
@@ -331,24 +334,24 @@
       <div class="journal-img ji-1"></div>
       <div class="journal-info">
         <p class="journal-cat">工艺 · CRAFT</p>
-        <h3>盘金绣 — 比机绣贵 10 倍的秘密</h3>
-        <p class="journal-date">2026 · 06 · 12</p>
+        <h3>平安福马 — 一针一线绣一匹马年香囊</h3>
+        <p class="journal-date">2026 · 08 · 15</p>
       </div>
     </article>
     <article class="journal-card j2">
       <div class="journal-img ji-2"></div>
       <div class="journal-info">
         <p class="journal-cat">场景 · SCENE</p>
-        <h3>揭盖头 — 中式婚礼里最安静的一刻</h3>
-        <p class="journal-date">2026 · 05 · 28</p>
+        <h3>百喜图 — 亲手绣一幅新婚百喜挂画</h3>
+        <p class="journal-date">2026 · 07 · 30</p>
       </div>
     </article>
     <article class="journal-card j3">
       <div class="journal-img ji-3"></div>
       <div class="journal-info">
         <p class="journal-cat">好物 · OBJECT</p>
-        <h3>马年春节 · 选一只红杯垫的讲究</h3>
-        <p class="journal-date">2026 · 02 · 06</p>
+        <h3>吸猫记 — 24 节气门帘，把猫绣进日常</h3>
+        <p class="journal-date">2026 · 06 · 18</p>
       </div>
     </article>
   </div>
@@ -368,13 +371,9 @@
 <footer class="footer">
   <div class="footer-top">
     <div class="footer-brand">
-      <span class="brand-seal"><svg viewBox="0 0 80 80" width="44" height="44"><use href="#seal-shenchi"/></svg></span>
-      <div>
-        <span class="brand-cn">神驰布艺</span>
-        <span class="brand-en">SHENCHI · EMBROIDERY STUDIO</span>
-      </div>
+      <img class="brand-logo footer-logo" src="img/logo-light.png" alt="神驰布艺工作室 SHENCHI STUDIO" />
     </div>
-    <p class="footer-slogan">十年匠作 · 中式喜帕 · 龙凤刺绣</p>
+    <p class="footer-slogan">七年匠作 · 中式喜帕 · 龙凤刺绣</p>
   </div>
   <div class="footer-grid">
     <div class="footer-col">

@@ -110,8 +110,8 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
   backdrop-filter: none;
   border-bottom-color: transparent;
 }
-.header.hero-mode .brand-cn { color: var(--paper); }
-.header.hero-mode .brand-en { color: rgba(244, 236, 221, 0.72); }
+.header.hero-mode .brand-logo { display: none; }
+.header.hero-mode .brand-logo-light { display: block; }
 .header.hero-mode .nav a { color: rgba(244, 236, 221, 0.78); }
 .header.hero-mode .nav a:hover { color: var(--paper); }
 .header.hero-mode .header-actions .cn { color: var(--paper); }
@@ -139,6 +139,11 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
 }
 
 .brand { display: flex; align-items: center; gap: 14px; }
+/* 图片 Logo（透明底黑字 + 红印章；深色背景用亮白版） */
+.brand-img { display: block; }
+.brand-logo { height: 58px; width: auto; display: block; }
+.brand-logo-light { display: none; }
+.footer-logo { height: 84px; }
 .brand-seal { color: var(--red); flex-shrink: 0; display: flex; }
 .brand-word { display: flex; flex-direction: column; line-height: 1.4; }
 .brand-cn { font-size: 17px; font-weight: 500; letter-spacing: 0.34em; color: var(--ink); }
@@ -169,8 +174,10 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
 .header-actions .en { color: var(--ink-mute); }
 .header-actions .sep { color: var(--hairline); }
 .taobao-pill {
+  display: inline-block;
   border: 1px solid rgba(26, 19, 16, 0.22);
   color: var(--ink);
+  text-decoration: none;
   padding: 7px 20px;
   font-size: 11px;
   letter-spacing: 0.2em;
@@ -554,32 +561,18 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
 /* =====================================================
    商品网格 · KINTO 式纯网格
    ===================================================== */
-/* ===== 商品横列（KINTO product · 左侧栏 + 右侧大图横滑） ===== */
+/* ===== 龙凤精品 · 4×2 图片网格（参考版式：图上文叠） ===== */
 
 .featured {
   padding: 0 48px 160px;
   background: var(--paper);
 }
 
-.featured-inner {
+.featured-head {
   max-width: var(--w);
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 56px;
-  align-items: start;
 }
 
-/* ---------- 左侧固定栏 ---------- */
-.featured-side {
-  position: sticky;
-  top: 120px;
-  padding-top: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-}
-.featured-side .eyebrow { display: none; }
 .featured-title {
   font-size: clamp(28px, 2.4vw, 36px);
   font-weight: 300;
@@ -609,189 +602,127 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
 }
 .more-link:hover { color: var(--red); border-color: var(--red); }
 
-.featured-nav {
-  margin-top: 18px;
-  display: flex;
-  gap: 0;
-  border: 1px solid var(--hairline);
-  width: max-content;
+/* ---------- 4×2 网格 ---------- */
+.collect-grid {
+  max-width: var(--w);
+  margin: 0 auto;
+  padding-top: 58px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
 }
-.featured-nav button {
-  width: 46px;
-  height: 46px;
-  background: transparent;
-  border: none;
-  font-family: var(--en-serif);
-  font-size: 22px;
-  line-height: 1;
-  color: var(--ink);
-  cursor: pointer;
-  transition: background 0.3s var(--ease), color 0.3s var(--ease);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.featured-nav button + button { border-left: 1px solid var(--hairline); }
-.featured-nav button:hover:not(:disabled) {
-  background: var(--ink);
-  color: var(--paper);
-}
-.featured-nav button:disabled {
-  opacity: 0.25;
-  cursor: not-allowed;
-}
-
-/* ---------- 右侧横滑轨道 ---------- */
-.featured-rail {
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  /* 注意：不设 scroll-behavior:smooth —— 否则 JS 即使传 instant 也会被
-     CSS 强制 smooth 动画（~600ms），导致自动滚动节奏不准。
-     自动滚动走 instant，按钮点击单独传 smooth 即可。 */
-  /* 让第一张卡片从最左侧紧贴开始 */
-  margin-left: -8px;
-  padding-left: 8px;
-  padding-right: 8px;
-  /* 隐藏滚动条 */
-  scrollbar-width: none;
-}
-.featured-rail::-webkit-scrollbar { display: none; }
-
-.featured-track {
-  display: flex;
-  gap: 32px;
-}
-
-.fc-card {
-  flex: 0 0 360px;
-  scroll-snap-align: start;
+.collect-card {
+  position: relative;
+  aspect-ratio: 3 / 4.1;
+  overflow: hidden;
   display: block;
   text-decoration: none;
-  color: inherit;
-}
-
-/* 图片容器 —— KINTO 风格的纯净大图 */
-.fc-img {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
   background: var(--paper-warm);
-  background-size: cover;
-  background-position: center;
 }
-.fc-img.p1 { background-image: url("img/product-jinju.jpg"); }
-.fc-img.p2 { background-image: url("img/product-dragonphoenix.jpg"); }
-
-/* 占位图（仿照旧 .product-img::before/::after 的素色 + 楷字） */
-.fc-img::before {
+/* 图片层：占位阶段是素色渐变；拿到真图后在 cc1~cc8 的 ::after 加 background-image 即可 */
+.collect-card::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--ph, linear-gradient(165deg, #EFECE4, #E6E1D6));
+  z-index: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: scale(1);
+  transition: transform 1.1s var(--ease);
+  will-change: transform;
 }
-.fc-img.p1::before, .fc-img.p2::before { display: none; }
-.fc-img.p3 { --ph: linear-gradient(165deg, #F0EDE6, #E7E2D7); }
-.fc-img.p4 { --ph: linear-gradient(165deg, #EDE7DC, #E0D9C9); }
-.fc-img.p5 { --ph: linear-gradient(165deg, #EFEBE3, #E4DED2); }
-.fc-img.p6 { --ph: linear-gradient(165deg, #EAE6DE, #DDD8CC); }
-
-.fc-img::after {
+.collect-card:hover::after { transform: scale(1.05); }
+/* 底部压暗渐变：保证叠字在真图上也可读 */
+.collect-card::before {
+  content: "";
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--callig);
-  font-size: 130px;
-  letter-spacing: 0.1em;
-  transition: opacity 0.6s var(--ease), transform 0.9s var(--ease);
-  z-index: 0;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(20, 14, 10, 0.55), rgba(20, 14, 10, 0) 42%);
 }
-.fc-img.p1::after, .fc-img.p2::after { display: none; }
-.fc-img.p3::after { content: "帕"; color: rgba(126, 31, 32, 0.32); }
-.fc-img.p4::after { content: "礼"; color: rgba(126, 31, 32, 0.28); }
-.fc-img.p5::after { content: "垫"; color: rgba(26, 19, 16, 0.26); }
-.fc-img.p6::after { content: "绣"; color: rgba(126, 31, 32, 0.3); }
+/* 真实产品图（4×2 精品网格） */
+.cc1::after { background-image: url("img/product-dragonphoenix.jpg"); }
+.cc2::after { background-image: url("img/product-bamboo-hankie.jpg"); }
+.cc3::after { background-image: url("img/product-xi-coaster.jpg"); }
+.cc4::after { background-image: url("img/product-dunhuang-hankie.png"); }
+.cc5::after { background-image: url("img/product-jinju.jpg"); }
+.cc6::after { background-image: url("img/product-panda-hankie.jpg"); }
+.cc7::after { background-image: url("img/custom-tea-mat.jpg"); }
+.cc8::after { background-image: url("img/custom-bird-hankie.jpg"); }
 
-/* hover 时图片极轻微缩放 + 墨字变淡 */
-.fc-card:hover .fc-img::after { opacity: 0.45; transform: scale(1.04); }
-
-/* KINTO 揭示动效（配合 script.js 的 .kinto class）—— fc-img 不在此列，
-   因为 fc-img 在水平 carousel (overflow-x:auto) 里 IntersectionObserver
-   经常漏触发，导致 clip-path 永远裁掉、用户看不到图片。
-   产品卡图片默认可见，hover 时的 scale + fc-info 的淡入已足够） */
-
-/* 角标（可选，默认隐藏） */
-.ribbon {
+/* 左上角序号（占位阶段深色，换真图后可改 rgba(255,255,255,.85)） */
+.cc-idx {
   position: absolute;
-  top: 14px;
-  left: 14px;
+  top: 16px;
+  left: 18px;
   z-index: 2;
-  font-family: var(--sans);
-  font-size: 10px;
+  font-family: var(--en-serif);
+  font-size: 12px;
   letter-spacing: 0.18em;
-  padding: 5px 10px;
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--ink);
-  border: 1px solid var(--hairline);
-}
-.ribbon-hot { color: var(--red); border-color: rgba(126, 31, 32, 0.3); }
-
-/* ---------- 卡片下方极简信息 ---------- */
-.fc-info {
-  padding: 22px 2px 0;
-}
-.fc-cat {
-  font-family: var(--sans);
-  font-size: 9.5px;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-  margin: 0 0 9px;
-}
-.fc-info h3 {
-  font-size: 15.5px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  margin: 0 0 12px;
+  color: rgba(26, 19, 16, 0.4);
   transition: color 0.4s var(--ease);
 }
-.fc-card:hover .fc-info h3 { color: var(--red-deep); }
-.fc-price {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
+/* 左下角叠字 */
+.cc-cap {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+  z-index: 2;
 }
-.fc-price span {
+.cc-cap h3 {
   font-size: 15px;
-  color: var(--ink);
-  letter-spacing: 0.04em;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: #fff;
+  margin: 0 0 7px;
+  transition: color 0.4s var(--ease);
 }
-.fc-price em {
-  font-style: normal;
+.cc-cap p {
   font-size: 11px;
   font-weight: 300;
-  color: var(--ink-mute);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
 }
+.collect-card:hover .cc-cap h3 { color: var(--gold); }
+
+/* ---------- 底部居中收尾（文案 + 深色按钮） ---------- */
+.collect-foot {
+  max-width: var(--w);
+  margin: 72px auto 0;
+  text-align: center;
+}
+.collect-foot p {
+  font-family: var(--cn-serif);
+  font-size: 13.5px;
+  letter-spacing: 0.22em;
+  color: var(--ink-mute);
+  margin: 0 0 30px;
+}
+.btn-dark {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  padding: 16px 40px;
+  text-decoration: none;
+  transition: background 0.4s var(--ease);
+}
+.btn-dark:hover { background: var(--red-deep); }
 
 /* ---------- 窄屏响应式 ---------- */
 @media (max-width: 900px) {
-  .featured-inner {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .featured-side {
-    position: static;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 18px 28px;
-  }
-  .featured-title { font-size: 26px; }
-  .featured-sub { flex: 1 1 100%; max-width: none; }
-  .fc-card { flex: 0 0 78vw; }
+  .collect-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .featured-head { max-width: none; }
+}
+@media (max-width: 640px) {
+  .collect-grid { gap: 12px; padding-top: 40px; }
+  .cc-cap { left: 14px; right: 14px; bottom: 14px; }
+  .cc-cap h3 { font-size: 13.5px; }
+  .cc-cap p { font-size: 10px; }
 }
 
 /* =====================================================
@@ -824,15 +755,25 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
   border: 1px solid transparent;
   padding: 40px 26px 34px;
   text-align: center;
-  transition: border-color 0.5s var(--ease);
 }
-.series-item:hover { border-color: rgba(200, 164, 104, 0.45); }
 .series-art { margin: 0 auto 20px; width: 58px; height: 58px; opacity: 0.9; }
 .series-art svg { width: 100%; height: 100%; }
-.s1 { color: var(--red); }
-.s2 { color: var(--red); opacity: 0.8; }
-.s3 { color: var(--gold-deep); }
-.s4 { color: var(--ink-soft); }
+/* 龙凤呈祥/双喜临门/合欢同心/空谷幽兰：真实纹样图（透明底），统一 110px 高展示框保证四卡对齐 */
+.s1, .s2, .s3, .s4 {
+  width: 100%;
+  height: 110px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+}
+.s1 img { width: auto; height: auto; max-width: 150px; max-height: 100%; display: block; }
+/* 双喜临门线描囍字视觉偏轻，缩到 95px 让密度与龙凤更协调 */
+.s2 img { width: auto; height: auto; max-width: 95px; max-height: 100%; display: block; }
+/* 合欢纹样细节繁密，缩到 120px */
+.s3 img { width: auto; height: auto; max-width: 120px; max-height: 100%; display: block; }
+.s4 img { width: auto; height: auto; max-width: 150px; max-height: 100%; display: block; }
 .series-item h4 { font-size: 15px; font-weight: 500; letter-spacing: 0.24em; margin-bottom: 5px; }
 .series-item span {
   font-family: var(--en-serif);
@@ -908,57 +849,121 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
 /* =====================================================
    定制服务
    ===================================================== */
-.custom { padding: 0 48px 150px; background: var(--paper); }
+/* 左图通栏贴边，右列内容整体居中（KINTO personalize 版式） */
+.custom { padding: 0 0 150px; background: var(--paper); }
 
 .custom-inner {
-  max-width: var(--w);
-  margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 110px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
 }
-.custom-poster { position: relative; }
-.custom-poster img { aspect-ratio: 4 / 4.6; object-fit: cover; }
-.custom-poster::before {
-  content: "";
-  position: absolute;
-  inset: 16px -16px -16px 16px;
-  border: 1px solid rgba(200, 164, 104, 0.45);
-  z-index: -1;
+.custom-poster {
+  position: relative;
+  aspect-ratio: 10 / 8.4;
+  overflow: hidden;
 }
-.custom-poster-tag {
+.custom-poster img {
   position: absolute;
-  right: -12px; top: 24px;
-  writing-mode: vertical-rl;
-  background: rgba(26, 19, 16, 0.92);
-  color: var(--gold);
-  font-size: 10.5px;
-  font-weight: 300;
-  letter-spacing: 0.32em;
-  padding: 18px 10px;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  animation: custom-crossfade 20s var(--ease) infinite;
+}
+.custom-poster .cf-1 { animation-delay: 0s; }
+.custom-poster .cf-2 { animation-delay: -5s; }
+.custom-poster .cf-3 { animation-delay: -10s; }
+.custom-poster .cf-4 { animation-delay: -15s; }
+@keyframes custom-crossfade {
+  0%, 22%   { opacity: 1; }
+  28%, 96%  { opacity: 0; }
+  100%      { opacity: 1; }
 }
 
-.custom-text h2 { font-weight: 300; letter-spacing: 0.16em; margin-bottom: 22px; }
-.custom-text > p { font-size: 13.5px; font-weight: 300; color: var(--ink-soft); letter-spacing: 0.07em; margin-bottom: 34px; }
-
-.custom-list { list-style: none; margin-bottom: 44px; }
-.custom-list li {
-  padding: 17px 0 17px 4px;
-  border-bottom: 1px solid var(--hairline);
-  font-size: 13.5px;
-  letter-spacing: 0.12em;
+.custom-text {
+  padding: 60px 72px;
   display: flex;
-  gap: 22px;
-  align-items: baseline;
-  transition: padding-left 0.4s var(--ease);
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
-.custom-list li:hover { padding-left: 14px; }
-.custom-list b {
-  font-family: var(--en-serif);
+
+/* 三个定制品类小图（KINTO 三缩略图样式） */
+.custom-items {
+  display: flex;
+  justify-content: center;
+  gap: 56px;
+  margin: 0 0 40px;
+}
+.ci-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+}
+.ci-img {
+  position: relative;
+  width: 108px;
+  height: 108px;
+  overflow: hidden;
+  background: var(--paper-warm);
+}
+.ci-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s var(--ease), opacity 1.1s var(--ease);
+}
+/* 多图轮播：叠放 + 透明度交叉淡入 */
+.ci-img.is-fade img {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+.ci-img.is-fade img.on { opacity: 1; }
+/* 透明底 PNG：完整呈现不裁切（KINTO 抠图风格） */
+.ci-img img.ci-contain { object-fit: contain; padding: 10px; }
+.ci-card:hover .ci-img img { transform: scale(1.06); }
+.ci-label {
+  font-size: 11.5px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  color: var(--ink-soft);
+  transition: color 0.4s var(--ease);
+}
+.ci-card:hover .ci-label { color: var(--red-deep); }
+
+/* 下划线链接（KINTO「试试看」样式） */
+.custom-try {
+  font-size: 12.5px;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  color: var(--ink);
+  text-decoration: none;
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--ink);
+  margin-bottom: 52px;
+  transition: all 0.4s var(--ease);
+}
+.custom-try:hover { color: var(--red-deep); border-color: var(--red-deep); letter-spacing: 0.36em; }
+
+.custom-list { list-style: none; margin-bottom: 14px; }
+.custom-list li {
+  padding: 4px 0;
+  font-size: 12.5px;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+}
+.custom-note {
+  font-size: 11.5px;
+  line-height: 1.6;
+  letter-spacing: 0.1em;
   color: var(--ink-mute);
-  font-weight: 400;
-  font-size: 13px;
 }
 
 /* =====================================================
@@ -974,33 +979,28 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
   gap: 56px 48px;
 }
 .journal-card { cursor: pointer; }
+/* 手记图片：真实图挂 ::after 层，hover zoom（与 scene 同款手法） */
 .journal-img {
   aspect-ratio: 4 / 3;
   position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: var(--paper-warm);
 }
-.journal-img::before {
+.journal-img::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--jg, var(--paper-warm));
-  opacity: 0.6;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: scale(1);
+  transition: transform 1.1s var(--ease);
+  will-change: transform;
 }
-.journal-img::after {
-  position: relative;
-  font-family: var(--callig);
-  font-size: 92px;
-  transition: opacity 0.5s var(--ease);
-}
-.ji-1 { --jg: linear-gradient(150deg, #DCCBC5, #D1BCB4); }
-.ji-1::after { content: "金"; color: rgba(126, 31, 32, 0.55); }
-.ji-2 { --jg: linear-gradient(150deg, #E4DCC8, #D9CFB6); }
-.ji-2::after { content: "礼"; color: rgba(126, 31, 32, 0.45); }
-.ji-3 { --jg: linear-gradient(150deg, #DFDBD3, #D3CDC3); }
-.ji-3::after { content: "席"; color: rgba(26, 19, 16, 0.45); }
+.journal-card:hover .journal-img::after { transform: scale(1.06); }
+.ji-1::after { background-image: url("img/journal-fuma.png?v=2"); }
+.ji-2::after { background-image: url("img/journal-baixi.jpg?v=2"); }
+.ji-3::after { background-image: url("img/journal-cat.jpg?v=2"); }
 
 .journal-info { padding: 24px 2px 0; }
 .journal-cat {
@@ -1186,19 +1186,21 @@ h2 { font-size: clamp(26px, 2.6vw, 36px); letter-spacing: 0.1em; }
   .hero-slide { grid-template-columns: 1fr; gap: 56px; padding: 70px 32px; }
   .hero-slide-image { aspect-ratio: 4 / 4; }
   .scene-grid, .product-grid, .journal-grid { grid-template-columns: repeat(2, 1fr); }
-  .series-inner, .craft-inner, .custom-inner { grid-template-columns: 1fr; gap: 64px; }
+  .series-inner, .craft-inner, .custom-inner { grid-template-columns: 1fr; gap: 0; }
+  .custom-text { padding: 64px 32px; }
   .footer-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-side { display: none; }
 }
 
 @media (max-width: 640px) {
   .container, .header-inner, .hero-slide, .scene, .sub-brand, .featured,
-  .series, .craft, .custom, .journal, .quote, .footer { padding-left: 22px; padding-right: 22px; }
+  .series, .craft, .journal, .quote, .footer { padding-left: 22px; padding-right: 22px; }
   .scene-grid, .product-grid, .journal-grid, .series-grid, .footer-grid { grid-template-columns: 1fr; }
   .hero-title { font-size: 40px; }
   .header-inner { padding: 0 22px; }
   .brand-en, .header-actions .sep, .header-actions .en { display: none; }
   .sub-brand-deco svg { width: 88px; height: 88px; }
   .quote::before { font-size: 210px; }
-  .custom-poster-tag { right: 0; }
+  .custom-items { gap: 30px; }
+  .ci-img { width: 88px; height: 88px; }
 }
